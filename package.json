@@ -1,0 +1,23 @@
+{
+  "name": "pixel-perfect",
+  "version": "1.0.0",
+  "description": "![Cité des Pixels](https://github.com/DeZoST/pixel-perfect/blob/main/client/public/images/logo-cite.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeZoST/pixel-perfect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeZoST/pixel-perfect/issues"
+  },
+  "homepage": "https://github.com/DeZoST/pixel-perfect#readme",
+  "dependencies": {
+    "prettier": "^3.2.5"
+  }
+}
