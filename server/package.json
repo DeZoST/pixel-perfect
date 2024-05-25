@@ -4,13 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-=======
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
     "lint": "eslint . --ext js --report-unused-disable-directives --max-warnings 0"
->>>>>>> db0e6a9eee824bcea72f4c1bfcf84b907bc26645
   },
   "keywords": [],
   "author": "",
