@@ -174,7 +174,7 @@ a {
   white-space: nowrap;
   border-right: 2px solid #F9BE66;
   animation: typing 3s steps(18, end), cursor 0.5s steps(18, end) infinite;
-  animation-delay: 0.35s;
+  animation-delay: 0.6s;
 }
 
 @keyframes typing {
