@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./HomePage.module.css";
 import "animate.css";
 import Logo from "../../components/logo/Logo";
+import Button from "../../components/button/Button";
 
 const AnimatedText = ({ text }) => {
   return (
@@ -55,12 +55,7 @@ const HomePage = () => {
               <AnimatedText text="(culture générale)" />
             </h2>
           </div>
-          <Link
-            to="/login"
-            className={`${styles.heroBannerButton} animate__animated animate__zoomInUp`}
-          >
-            Commencer
-          </Link>
+          <Button text="Commencer" className="animate__animated animate__zoomInUp" to="/login" />
         </section>
       </main>
     </div>
