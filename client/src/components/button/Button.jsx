@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.css';
 
-const Button = ({ text, onClick, className, to }) => {
+const Button = ({ logo, text, onClick, className, to }) => {
 
     if (to) {
         return (
@@ -14,12 +14,14 @@ const Button = ({ text, onClick, className, to }) => {
 
     return (
         <button className={`${styles.button} ${className}`} onClick={onClick}>
+            {logo && <img src={logo} alt="logo button" />}
             {text}
         </button>
     );
 };
 
 Button.propTypes = {
+    logo: PropTypes.string,
     text: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     className: PropTypes.string,

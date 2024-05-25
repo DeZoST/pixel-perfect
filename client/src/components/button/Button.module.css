@@ -1,14 +1,11 @@
 .button {
-    padding: 0.9rem 2.25rem;
     background: var(--clr-button-bg-gradient);
     backdrop-filter: blur(1rem);
     box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
-    border: 2px solid var(--clr-gold);
     border-radius: 5px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 1.1275rem;
     color: var(--clr-gold);
-    font-weight: 700;
     position: relative;
   }
   
@@ -26,4 +23,8 @@
   
   .button:hover::before {
     opacity: 1;
+  }
+
+  .button img{
+    display: inline;
   }
