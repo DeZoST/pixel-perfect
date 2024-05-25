@@ -1,0 +1,15 @@
+.title{
+    font-size: var(--fs-5xl);
+    letter-spacing: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-family: "Bebas Neue", sans-serif;
+    color: var(--clr-white);
+}
+
+.divider{
+    width: 11rem;
+    height: 6px;
+    background-color: var(--clr-gold);
+    margin: 1.5rem 0;
+}

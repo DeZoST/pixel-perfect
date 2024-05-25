@@ -4,6 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
     "lint": "eslint . --ext js --report-unused-disable-directives --max-warnings 0"
   },
