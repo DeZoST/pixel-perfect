@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import styles from './Title.module.css';
 
 const Title = ({ level, title, subtitle }) => {
     const Tag = `h${level}`;
     return (
-    <div className="title">
+    <div className={styles.title}>
         <Tag>{title}</Tag>
         {subtitle && <h2>{subtitle}</h2>}
-        <div className="underline"></div>
+        <div className={styles.divider}></div>
     </div>
     );
 }
