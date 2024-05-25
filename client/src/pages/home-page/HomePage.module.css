@@ -9,7 +9,7 @@
   background-size: cover;
   color: var(--clr-white);
   font-size: var(--fs-base);
-  font-weight: 400;
+  font-weight: 400
 }
 
 .main {
@@ -31,6 +31,13 @@
   font-family: "Bebas Neue", sans-serif;
   width: fit-content;
   margin-inline: auto;
+}
+
+.button{
+  padding: 0.9rem 2.25rem;
+  border: 2px solid var(--clr-gold);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
 }
 
 .shape {

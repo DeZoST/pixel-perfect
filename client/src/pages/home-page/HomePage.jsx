@@ -55,7 +55,7 @@ const HomePage = () => {
               <AnimatedText text="(culture générale)" />
             </h2>
           </div>
-          <Button text="Commencer" className="animate__animated animate__zoomInUp" to="/login" />
+          <Button text="Commencer" className={`${styles.button} animate__animated animate__zoomInUp`} to="/login" />
         </section>
       </main>
     </div>
