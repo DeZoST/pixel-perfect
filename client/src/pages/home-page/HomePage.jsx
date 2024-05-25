@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./HomePage.module.css";
 import "animate.css";
+import Logo from "../../components/logo/Logo";
 
 const AnimatedText = ({ text }) => {
   return (
@@ -22,11 +23,7 @@ AnimatedText.propTypes = {
 const HomePage = () => {
   return (
     <div className={styles.homePage}>
-      <img
-        src="/images/logo-cite.png"
-        alt="Logo de la Cité des Pixels"
-        className={`${styles.logo} animate__animated animate__zoomInLeft`}
-      />
+      <Logo className={"animate__animated animate__zoomInLeft"} />
       <main className={styles.main}>
         <section className={`${styles.heroBanner} container`}>
           <div
