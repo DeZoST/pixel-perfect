@@ -1,5 +1,5 @@
 .title{
-    font-size: var(--fs-5xl);
+    font-size: var(--fs-6xl);
     letter-spacing: 3px;
     line-height: 1;
     text-transform: uppercase;
@@ -7,9 +7,9 @@
     color: var(--clr-white);
 }
 
+
 .divider{
-    width: 11rem;
+    width: 10rem;
     height: 6px;
     background-color: var(--clr-gold);
-    margin: 1.5rem 0;
 }
