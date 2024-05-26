@@ -1,25 +1,28 @@
+import styles from './Switch.module.css';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Switch = ({ label, isChecked, onToggle }) => {
-    return (
-        <div className="switch">
-            <label>
-                {label}
-                <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={onToggle}
-                />
-                <span className="slider"></span>
-            </label>
-        </div>
-    );
+const Switch = ({ className, onToggle }) => {
+
+  const [isOn, setIsOn] = useState(false);
+
+  const toggleSwitch = () => {
+    setIsOn(!isOn);
+    onToggle(!isOn);
+  };
+
+  return (
+    <div className={`${styles.switchContainer} ${className}`}>
+      <span>Mode Modérateur</span>
+      <div className={`${styles.switch} ${isOn ? styles.on : styles.off}`} onClick={toggleSwitch}>
+        <div className={`${styles.switchToggle}`}></div>
+      </div>
+    </div>
+  );
 };
 
 Switch.propTypes = {
-    label: PropTypes.string.isRequired,
-    isChecked: PropTypes.bool.isRequired,
-    onToggle: PropTypes.func.isRequired,
+  className: PropTypes.string
 };
 
 export default Switch;

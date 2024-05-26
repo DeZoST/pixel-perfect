@@ -1,0 +1,45 @@
+.switchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: fit-content;
+    background-color: var(--clr-gold-10);
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    color: white;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .switch {
+    width: 3.25rem;
+    height: 1.55rem;
+    background-color: var(--clr-gold-10);
+    border: 2px solid var(--clr-gold);
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+  }
+  
+  .switch.on {
+    background-color: var(--clr-gold-50);
+  }
+  
+  .switchToggle {
+    width: 1.3rem;
+    height: 1.35rem;
+    background-color: var(--clr-gold);
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: left 0.3s;
+  }
+  
+  .switch.on .switchToggle {
+    left: 28.5px;
+  }
+  
