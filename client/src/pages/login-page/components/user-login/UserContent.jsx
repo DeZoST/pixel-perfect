@@ -1,5 +1,5 @@
 import styles from "./UserContent.module.css"
-import Button from "../button/Button"
+import Button from "../../../../components/button/Button"
 import {Link} from "react-router-dom"
 
 const UserContent = () => {

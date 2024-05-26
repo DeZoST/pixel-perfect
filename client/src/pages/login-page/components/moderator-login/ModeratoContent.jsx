@@ -1,4 +1,4 @@
-import Button from "../button/Button"
+import Button from "../../../../components/button/Button"
 import styles from "./ModeratorContent.module.css"
 import {useState} from "react"
 
