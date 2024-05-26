@@ -7,9 +7,9 @@
     font-size: 1.1275rem;
     color: var(--clr-gold);
     position: relative;
-  }
-  
-  .button::before {
+}
+
+.button::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -19,12 +19,12 @@
     opacity: 0;
     z-index: -1;
     transition: opacity 0.3s;
-  }
-  
-  .button:hover::before {
-    opacity: 1;
-  }
+}
 
-  .button img{
+.button:hover::before {
+    opacity: 1;
+}
+
+.button img {
     display: inline;
-  }
+}

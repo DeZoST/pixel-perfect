@@ -1,11 +1,11 @@
-.buttonContainer{
+.buttonContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 50%;
 }
 
-.button{
+.button {
     padding: 0rem 1.5rem 0rem 1rem;
     border: 1px solid var(--clr-gold);
     font-family: "Inter", sans-serif;
@@ -17,4 +17,4 @@
     color: var(--clr-white);
     margin-inline: auto;
     cursor: pointer;
-  }
+}

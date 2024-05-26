@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import styles from './Button.module.css';
+import PropTypes from "prop-types"
+import {Link} from "react-router-dom"
+import styles from "./Button.module.css"
 
-const Button = ({ logo, text, onClick, className, to, type }) => {
-
+const Button = ({logo, text, onClick, className, to}) => {
     if (to) {
         return (
             <Link className={`${styles.button} ${className}`} to={to}>
                 {text}
             </Link>
-        );
+        )
     }
 
     return (
@@ -17,8 +16,8 @@ const Button = ({ logo, text, onClick, className, to, type }) => {
             {logo && <img src={logo} alt="logo button" />}
             {text}
         </button>
-    );
-};
+    )
+}
 
 Button.propTypes = {
     logo: PropTypes.string,
@@ -26,7 +25,7 @@ Button.propTypes = {
     onClick: PropTypes.func,
     className: PropTypes.string,
     to: PropTypes.string,
-    type: PropTypes.string
-};
+    type: PropTypes.string,
+}
 
-export default Button;
+export default Button

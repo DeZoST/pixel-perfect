@@ -1,7 +1,5 @@
 const UserGamePage = () => {
-  return (
-    <div>UserGamePage</div>
-  )
+    return <div>UserGamePage</div>
 }
 
 export default UserGamePage

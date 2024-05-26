@@ -10,9 +10,9 @@
     border-radius: 5px;
     color: white;
     font-family: "Inter", sans-serif;
-  }
-  
-  .switch {
+}
+
+.switch {
     width: 3.25rem;
     height: 1.55rem;
     background-color: var(--clr-gold-10);
@@ -21,14 +21,13 @@
     position: relative;
     cursor: pointer;
     transition: background-color 0.3s;
-    
-  }
-  
-  .switch.on {
+}
+
+.switch.on {
     background-color: var(--clr-gold-50);
-  }
-  
-  .switchToggle {
+}
+
+.switchToggle {
     width: 1.3rem;
     height: 1.35rem;
     background-color: var(--clr-gold);
@@ -37,9 +36,8 @@
     top: 0;
     position: absolute;
     transition: left 0.3s;
-  }
-  
-  .switch.on .switchToggle {
+}
+
+.switch.on .switchToggle {
     left: 28.5px;
-  }
-  
+}

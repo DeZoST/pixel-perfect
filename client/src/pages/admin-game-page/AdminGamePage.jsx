@@ -1,8 +1,5 @@
-
 const AdminGamePage = () => {
-  return (
-    <div>AdminGamePage</div>
-  )
+    return <div>AdminGamePage</div>
 }
 
 export default AdminGamePage

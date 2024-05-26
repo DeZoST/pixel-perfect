@@ -1,4 +1,4 @@
-.moderatorContent{
+.moderatorContent {
     display: flex;
     height: 50%;
     margin-top: 5rem;
@@ -6,7 +6,7 @@
     font-family: "Inter", sans-serif;
 }
 
-.codeContainer{
+.codeContainer {
     background-color: var(--clr-gold-10);
     border-radius: 10px;
     padding: 2rem;
@@ -15,18 +15,18 @@
     gap: 1.5rem;
     justify-content: center;
     flex: 1;
-    
+
     height: fit-content;
 }
 
-.codeTitle{
+.codeTitle {
     color: var(--clr-white);
     line-height: 1;
     font-size: var(--fs-3xl);
     font-weight: 400;
 }
 
-.codeInput{
+.codeInput {
     border: 2px solid var(--clr-gold);
     border-radius: 5px;
     background: none;
@@ -35,11 +35,11 @@
     font-size: var(--fs-xl);
 }
 
-.buttonContainer{
+.buttonContainer {
     align-self: flex-end;
 }
 
-.button{
+.button {
     background-color: var(--clr-gold-10);
     color: var(--clr-white-70);
     font-size: var(--fs-2xl);

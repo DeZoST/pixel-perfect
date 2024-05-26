@@ -1,39 +1,47 @@
-import Button from '../button/Button';
-import styles from './ModeratorContent.module.css';
-import { useState } from 'react';
-
+import Button from "../button/Button"
+import styles from "./ModeratorContent.module.css"
+import {useState} from "react"
 
 const ModeratorContent = () => {
+    const [code, setCode] = useState("")
+    const [error, setError] = useState("")
 
-    const [code, setCode] = useState('');
-    const [error, setError] = useState('');
+    const handleChange = e => {
+        setCode(e.target.value)
+    }
 
-    const handleChange = (e) => {
-        setCode(e.target.value);
-    };
+    const handleSubmit = async e => {
+        e.preventDefault()
+        setError("")
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
-
-        try{
-            const response = await fetch('/api/pourLinstantRien', {
-                method: 'POST'
-            });
+        try {
+            const response = await fetch("/api/pourLinstantRien", {
+                method: "POST",
+            })
         } catch (error) {
             setError("Une erreur s'est produite quetpart")
         }
     }
 
-    return(
+    return (
         <form onSubmit={handleSubmit} className={styles.moderatorContent}>
             <div className={styles.codeContainer}>
                 <h2 className={styles.codeTitle}>Code du Modérateur :</h2>
-                <input type="text" id='code' value={code} onChange={handleChange} required placeholder="Insérer ici le code..." className={styles.codeInput}></input>
+                <input
+                    type="text"
+                    id="code"
+                    value={code}
+                    onChange={handleChange}
+                    required
+                    placeholder="Insérer ici le code..."
+                    className={styles.codeInput}
+                ></input>
             </div>
-            <div className={styles.buttonContainer}><Button type="submit" text='Prochaine étape' className={styles.button}></Button></div>  
+            <div className={styles.buttonContainer}>
+                <Button type="submit" text="Prochaine étape" className={styles.button}></Button>
+            </div>
         </form>
     )
-};
+}
 
-export default ModeratorContent;
+export default ModeratorContent
