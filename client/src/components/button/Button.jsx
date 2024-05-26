@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.css';
 
-const Button = ({ logo, text, onClick, className, to }) => {
+const Button = ({ logo, text, onClick, className, to, type }) => {
 
     if (to) {
         return (
@@ -25,7 +25,8 @@ Button.propTypes = {
     text: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     className: PropTypes.string,
-    to: PropTypes.string
+    to: PropTypes.string,
+    type: PropTypes.string
 };
 
 export default Button;
