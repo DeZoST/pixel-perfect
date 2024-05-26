@@ -1,5 +1,5 @@
 import styles from "./LoginPage.module.css"
-import UserContent from "./components/user-login/"
+import UserContent from "./components/user-login/UserContent"
 import ModeratorContent from "./components/moderator-login/ModeratoContent"
 import Switch from "../../components/switch/Switch"
 import Title from "../../components/title/Title"
