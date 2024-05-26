@@ -1,18 +1,28 @@
 import styles from "./LoginPage.module.css"
-import Button from "../../components/button/Button"
+import UserContent from "../../components/user-login/UserContent"
+import ModeratorContent from "../../components/moderator-login/ModeratoContent"
 import Switch from "../../components/switch/Switch"
 import Title from "../../components/title/Title"
+import { useState } from "react"
 
 const LoginPage = () => {
+
+  const [isModerator, setIsModerator] = useState(false);
+
+  const handleToggle = (isOn) => {
+    setIsModerator(isOn);
+  };
+
+
   return (
     <section className={`${styles.loginPage}`}>
-      <div className={"container"}>
-        <Switch label="Mode Modérateur" isChecked={false} />
-        <Title level={1} title="Connexion Pixel Perfect" />
-        <Button logo="/images/microsoft-logo.png" text="Se connecter à Microsoft" className={`${styles.button}`} />
+      <div className={`${styles.Container} container`}>
+        <header className={`${styles.header}`}><Switch onToggle={handleToggle} className={`${styles.switch}`} /></header>
+        <Title level={1} title="Connexion Pixel Perfect" className={`${styles.title}`} />
+        {isModerator ? <ModeratorContent /> : <UserContent />}
       </div>
     </section>
   )
-}
+};
 
 export default LoginPage

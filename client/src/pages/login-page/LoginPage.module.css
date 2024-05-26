@@ -1,20 +1,26 @@
+
 .loginPage{
     background: url('/images/bg-image.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    min-height: 100vh;
+    height: 100vh;
     font-size: var(--fs-base);
+    display: flex;
 }
 
-.button{
-    padding: 0rem 1.5rem 0rem 1rem;
-    border: 1px solid var(--clr-gold);
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
+.Container{
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: var(--fs-xl);
-    color: var(--clr-white);
+    justify-content: flex-end;
+    margin-top: 5rem;
+}
+
+  .title{
+    margin-top: 3rem;
   }
