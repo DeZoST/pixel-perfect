@@ -4,7 +4,7 @@ import {useState} from "react"
 
 const ModeratorContent = () => {
     const [code, setCode] = useState("")
-    const [error, setError] = useState("")
+    const [_, setError] = useState("")
 
     const handleChange = e => {
         setCode(e.target.value)
