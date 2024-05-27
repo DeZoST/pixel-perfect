@@ -6,6 +6,7 @@
     height: 100vh;
     font-size: var(--fs-base);
     display: flex;
+    overflow: hidden;
 }
 
 .Container {

@@ -1,8 +1,9 @@
 import Button from "../../../../components/button/Button"
 import styles from "./ModeratorContent.module.css"
 import {useState} from "react"
+import PropTypes from "prop-types"
 
-const ModeratorContent = () => {
+const ModeratorContent = ({className}) => {
     const [code, setCode] = useState("")
     const [_, setError] = useState("")
 
@@ -24,7 +25,7 @@ const ModeratorContent = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className={styles.moderatorContent}>
+        <form onSubmit={handleSubmit} className={`${styles.moderatorContent} ${className}`}>
             <div className={styles.codeContainer}>
                 <h2 className={styles.codeTitle}>Code du Modérateur :</h2>
                 <input
@@ -42,6 +43,10 @@ const ModeratorContent = () => {
             </div>
         </form>
     )
+}
+
+ModeratorContent.propTypes = {
+    className: PropTypes.string,
 }
 
 export default ModeratorContent

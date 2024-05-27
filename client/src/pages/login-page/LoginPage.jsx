@@ -4,6 +4,7 @@ import ModeratorContent from "./components/moderator-login/ModeratoContent"
 import Switch from "../../components/switch/Switch"
 import Title from "../../components/title/Title"
 import {useState} from "react"
+import "animate.css"
 
 const LoginPage = () => {
     const [isModerator, setIsModerator] = useState(false)
@@ -15,11 +16,19 @@ const LoginPage = () => {
     return (
         <section className={`${styles.loginPage}`}>
             <div className={`${styles.Container} container`}>
-                <header className={`${styles.header}`}>
+                <header className={`${styles.header} animate__animated animate__fadeInRight`}>
                     <Switch onToggle={handleToggle} className={`${styles.switch}`} />
                 </header>
-                <Title level={1} title="Connexion Pixel Perfect" className={`${styles.title}`} />
-                {isModerator ? <ModeratorContent /> : <UserContent />}
+                <Title
+                    level={1}
+                    title="Connexion Pixel Perfect"
+                    className={`${styles.title} animate__animated animate__fadeInDownBig`}
+                />
+                {isModerator ? (
+                    <ModeratorContent className="animate__animated animate__fadeInUpBig" />
+                ) : (
+                    <UserContent className="animate__animated animate__fadeInUpBig" />
+                )}
             </div>
         </section>
     )
