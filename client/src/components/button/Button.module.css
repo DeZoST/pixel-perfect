@@ -1,12 +1,13 @@
 .button {
     background: var(--clr-button-bg-gradient);
     backdrop-filter: blur(1rem);
-    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     font-family: "Inter", sans-serif;
     font-size: 1.1275rem;
     color: var(--clr-gold);
     position: relative;
+    transition: box-shadow 0.5s;
 }
 
 .button::before {
@@ -27,4 +28,8 @@
 
 .button img {
     display: inline;
+}
+
+.button:hover {
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.8);
 }
