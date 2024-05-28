@@ -49,8 +49,7 @@ const HomePage = () => {
                         />
                         <h1 className={`${styles.heroBannerTitle}`}>Pixel Perfect</h1>
                         <h2 className={styles.heroBannerSubtitle}>
-                            Qui aura la plus grosse ?
-                            <AnimatedText text="(culture générale)" />
+                            Qui aura la plus grosse ? <AnimatedText text="(culture générale)" />
                         </h2>
                     </div>
                     <Button
