@@ -30,7 +30,6 @@ const LoginPage = () => {
         if (accessToken) {
             authMutation(accessToken, {
                 onSuccess: resp => {
-                    // TODO : redirect to the game page
                     setSearchParams({})
                     login(resp)
                 },
