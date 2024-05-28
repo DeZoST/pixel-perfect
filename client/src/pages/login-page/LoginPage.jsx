@@ -5,11 +5,17 @@ import Switch from "../../components/switch/Switch"
 import Title from "../../components/title/Title"
 import {useState, useEffect} from "react"
 import "animate.css"
+import {useSearchParams} from "react-router-dom"
+import {useAuthMutation} from "../../hooks/useAuthMutation"
+import {useAuth} from "../../hooks/useAuth"
 
 const LoginPage = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
     const [isModerator, setIsModerator] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
     const [content, setContent] = useState()
+    const authMutation = useAuthMutation()
+    const {login} = useAuth()
 
     const handleToggle = isOn => {
         setIsAnimating(true)
@@ -18,6 +24,19 @@ const LoginPage = () => {
             setIsAnimating(false)
         }, 400)
     }
+    // TODO : Add a text somewhere on the page to display the error message : searchParams.get("error")
+    useEffect(() => {
+        const accessToken = searchParams.get("access_token")
+        if (accessToken) {
+            authMutation.mutate(accessToken, {
+                onSuccess: resp => {
+                    // TODO : redirect to the game page
+                    setSearchParams({})
+                    login(resp)
+                },
+            })
+        }
+    }, [searchParams])
 
     useEffect(() => {
         if (!isAnimating) {
