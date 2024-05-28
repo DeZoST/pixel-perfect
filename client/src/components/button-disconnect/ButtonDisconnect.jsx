@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom"
 import PropTypes from "prop-types"
-import Button from "../button/Button" // Assurez-vous que le chemin vers Button est correct
+import Button from "../button/Button"
+import styles from "./ButtonDisconnect.module.css"
 
 const ButtonDisconnect = ({className}) => {
     const navigate = useNavigate()
@@ -11,7 +12,9 @@ const ButtonDisconnect = ({className}) => {
         navigate("/login")
     }
 
-    return <Button text="Déconnexion" onClick={handleDisconnect} className={className} />
+    return (
+        <Button text="Déconnexion" onClick={handleDisconnect} className={`${className} ${styles.buttonDisconnect}`} />
+    )
 }
 
 ButtonDisconnect.propTypes = {

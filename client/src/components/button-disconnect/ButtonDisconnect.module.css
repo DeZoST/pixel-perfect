@@ -1,0 +1,5 @@
+.buttonDisconnect {
+    padding: 1.15rem 4.65rem;
+    color: var(--clr-white-70);
+    border-radius: 10px;
+}
