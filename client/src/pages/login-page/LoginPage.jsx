@@ -14,7 +14,7 @@ const LoginPage = () => {
     const [isModerator, setIsModerator] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
     const [content, setContent] = useState()
-    const authMutation = useAuthMutation()
+    const {mutate: authMutation, isLoading} = useAuthMutation()
     const {login} = useAuth()
 
     const handleToggle = isOn => {
@@ -28,9 +28,8 @@ const LoginPage = () => {
     useEffect(() => {
         const accessToken = searchParams.get("access_token")
         if (accessToken) {
-            authMutation.mutate(accessToken, {
+            authMutation(accessToken, {
                 onSuccess: resp => {
-                    // TODO : redirect to the game page
                     setSearchParams({})
                     login(resp)
                 },
