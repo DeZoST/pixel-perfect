@@ -1,0 +1,26 @@
+.userGamePage {
+    background: url("/images/bg-image.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    font-size: var(--fs-base);
+    display: flex;
+    overflow: hidden;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 5rem;
+}
+
+.title {
+    margin-top: 3rem;
+}
