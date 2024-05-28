@@ -49,3 +49,7 @@
 .button::before {
     border-radius: 10px;
 }
+
+.error {
+    color: var(--clr-error-message);
+}
