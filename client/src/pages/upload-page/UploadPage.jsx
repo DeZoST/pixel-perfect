@@ -23,31 +23,6 @@ const UploadPage = () => {
             setError("Veuillez sélectionner un fichier.")
             return
         }
-
-        // Simulation de l'upload
-        setTimeout(() => {
-            setUploaded(true)
-        }, 2000)
-
-        // Exemple de requête pour l'upload (remplacer par votre logique d'upload)
-        // try {
-        //   const formData = new FormData();
-        //   formData.append('file', file);
-        //   formData.append('teamName', teamName);
-
-        //   const response = await fetch('/api/upload', {
-        //     method: 'POST',
-        //     body: formData,
-        //   });
-
-        //   if (response.ok) {
-        //     setUploaded(true);
-        //   } else {
-        //     setError('Échec de l\'upload, veuillez réessayer.');
-        //   }
-        // } catch (error) {
-        //   setError('Une erreur s\'est produite, veuillez réessayer.');
-        // }
     }
 
     return (
