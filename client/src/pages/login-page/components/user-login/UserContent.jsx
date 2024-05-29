@@ -9,7 +9,6 @@ const UserContent = ({className}) => {
         `response_type=code&` +
         `redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&` +
         `scope=XboxLive.signin%20offline_access`
-
     return (
         <div className={`${styles.buttonContainer} ${className}`}>
             <Link to={loginUrl}>

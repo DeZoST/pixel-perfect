@@ -1,24 +1,20 @@
 export async function authenticateUser(req) {
-    const code = req.query.code
-    const microsoftToken = await getMicrosoftToken(code)
+    if (!req.body.token) throw new Error("No token provided.")
 
-    if (microsoftToken) {
-        const {uhs, xblToken} = await getXboxLiveToken(microsoftToken)
-        const xblXTSToken = await getXboxLiveXSTS(uhs, xblToken)
-        const mojangToken = await getMojangToken(uhs, xblXTSToken)
-        const mojangProfile = await getMojangProfile(mojangToken)
+    const {uhs, xblToken} = await getXboxLiveToken(req.body.token)
+    const xblXTSToken = await getXboxLiveXSTS(uhs, xblToken)
+    const mojangToken = await getMojangToken(uhs, xblXTSToken)
+    const mojangProfile = await getMojangProfile(mojangToken)
 
-        return mojangProfile
-    }
-
-    return null
+    return mojangProfile
 }
 
-async function getMicrosoftToken(code) {
+export async function getMicrosoftToken(req) {
+    if (!req.query.code) throw new Error("No code provided.")
     const query = new URLSearchParams({
         client_id: process.env.MICROSOFT_CLIENT_ID,
         client_secret: process.env.MICROSOFT_CLIENT_SECRET,
-        code: code,
+        code: req.query.code,
         redirect_uri: process.env.MICROSOFT_REDIRECT_URI,
         grant_type: "authorization_code",
     }).toString()
@@ -31,6 +27,7 @@ async function getMicrosoftToken(code) {
         },
     })
     const data = await microsoft.json()
+    if (!data.access_token) throw new Error("Microsoft token not found. Something went wrong.")
 
     return data.access_token
 }

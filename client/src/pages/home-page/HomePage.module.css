@@ -78,7 +78,7 @@
 .animatedText {
     display: inline-block;
     vertical-align: sub;
-    width: 172px;
+    width: 135px;
     font-size: var(--fs-xl);
     overflow: hidden;
     white-space: nowrap;

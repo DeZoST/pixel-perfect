@@ -1,17 +1,11 @@
-import {useNavigate} from "react-router-dom"
 import PropTypes from "prop-types"
-import Button from "../button/Button" // Assurez-vous que le chemin vers Button est correct
+import Button from "../button/Button"
+import styles from "./ButtonDisconnect.module.css"
+import {useAuth} from "../../hooks/useAuth"
 
 const ButtonDisconnect = ({className}) => {
-    const navigate = useNavigate()
-
-    const handleDisconnect = () => {
-        console.log("Déconnexion")
-        localStorage.removeItem("authToken")
-        navigate("/login")
-    }
-
-    return <Button text="Déconnexion" onClick={handleDisconnect} className={className} />
+    const {logout} = useAuth()
+    return <Button text="Déconnexion" onClick={() => logout()} className={`${className} ${styles.buttonDisconnect}`} />
 }
 
 ButtonDisconnect.propTypes = {
