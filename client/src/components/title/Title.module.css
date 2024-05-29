@@ -7,6 +7,11 @@
     color: var(--clr-white);
 }
 
+.title h2 {
+    font-size: var(--fs-4xl);
+    margin-bottom: 0.75rem;
+}
+
 .divider {
     width: 10rem;
     height: 6px;
