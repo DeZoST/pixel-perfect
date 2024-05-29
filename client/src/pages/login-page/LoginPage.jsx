@@ -16,7 +16,7 @@ const LoginPage = () => {
     const [isModerator, setIsModerator] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
     const [content, setContent] = useState()
-    const {mutate: authMutation, isLoading: autohLoading} = useAuthMutation()
+    const {mutate: authMutation} = useAuthMutation()
     const {login} = useAuth()
 
     const handleToggle = isOn => {
@@ -39,7 +39,7 @@ const LoginPage = () => {
                 onSettled: () => setIsLoading(false),
             })
         }
-    }, [searchParams])
+    }, [authMutation, login, searchParams, setSearchParams])
 
     useEffect(() => {
         if (!isAnimating) {
