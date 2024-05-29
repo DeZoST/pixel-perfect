@@ -30,10 +30,10 @@ const ModeratorContent = ({className}) => {
                 navigate("/admin-game")
             } else {
                 const data = await response.json()
-                setError(data.message || "Le mot de passe est pas bon")
+                setError(data.message || "Le mot de passe est incorrect.")
             }
         } catch (error) {
-            setError("Une erreur s'est produite quetpart")
+            setError("Une erreur s'est produite, veuillez réessayer.")
         }
     }
 
