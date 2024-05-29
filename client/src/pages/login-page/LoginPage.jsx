@@ -8,13 +8,15 @@ import "animate.css"
 import {useSearchParams} from "react-router-dom"
 import {useAuthMutation} from "../../hooks/useAuthMutation"
 import {useAuth} from "../../hooks/useAuth"
+import Loader from "../../components/loader/Loader"
 
 const LoginPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
+    const [isLoading, setIsLoading] = useState(false)
     const [isModerator, setIsModerator] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
     const [content, setContent] = useState()
-    const {mutate: authMutation, isLoading} = useAuthMutation()
+    const {mutate: authMutation, isLoading: autohLoading} = useAuthMutation()
     const {login} = useAuth()
 
     const handleToggle = isOn => {
@@ -28,11 +30,13 @@ const LoginPage = () => {
     useEffect(() => {
         const accessToken = searchParams.get("access_token")
         if (accessToken) {
+            setIsLoading(true)
             authMutation(accessToken, {
                 onSuccess: resp => {
                     setSearchParams({})
                     login(resp)
                 },
+                onSettled: () => setIsLoading(false),
             })
         }
     }, [searchParams])
@@ -52,19 +56,25 @@ const LoginPage = () => {
     return (
         <section className={`${styles.loginPage}`}>
             <div className={`${styles.Container} container`}>
-                <header className={`${styles.header} animate__animated animate__fadeInRight`}>
-                    <Switch onToggle={handleToggle} className={`${styles.switch}`} />
-                </header>
-                <Title
-                    level={1}
-                    title="Connexion Pixel Perfect"
-                    className={`${styles.title} animate__animated animate__fadeInDownBig`}
-                />
-                <div
-                    className={`${styles.contentContainer} ${isAnimating ? "animate__animated animate__fadeOutDownBig" : ""}`}
-                >
-                    {content}
-                </div>
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    <>
+                        <header className={`${styles.header} animate__animated animate__fadeInRight`}>
+                            <Switch onToggle={handleToggle} className={`${styles.switch}`} />
+                        </header>
+                        <Title
+                            level={1}
+                            title="Connexion Pixel Perfect"
+                            className={`${styles.title} animate__animated animate__fadeInDownBig`}
+                        />
+                        <div
+                            className={`${styles.contentContainer} ${isAnimating ? "animate__animated animate__fadeOutDownBig" : ""}`}
+                        >
+                            {content}
+                        </div>
+                    </>
+                )}
             </div>
         </section>
     )
