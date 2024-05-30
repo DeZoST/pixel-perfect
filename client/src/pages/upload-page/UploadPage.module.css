@@ -27,22 +27,31 @@
 
 .uploadContainer {
     height: 100%;
-    margin: 7rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
 .uploadForm {
-    height: 100%;
-    width: 90%;
+    padding: 2rem 0 3rem;
+    width: 80%;
     background-color: var(--clr-gold-10);
     border-radius: 10px;
     margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 .label {
     color: var(--clr-white);
-    font-size: var(--fs-2xl);
+    font-size: var(--fs-3xl);
     font-family: "Inter", sans-serif;
     font-weight: 400;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1;
 }
 
 hr {
@@ -53,9 +62,49 @@ hr {
 }
 
 .uploadSection {
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 2rem;
     align-items: center;
+}
+
+.uploadIconContainer {
+    background-color: var(--clr-gold-20);
+    border-radius: 50%;
+    padding: 3rem;
+}
+
+.uploadDescriptionContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--clr-white-70);
+    font-size: var(--fs-xl);
+    font-family: "Inter", sans-serif;
+}
+
+.uploadDescription {
+    font-weight: 400;
+    line-height: 1;
+}
+
+.or {
+    color: var(--clr-gold);
+    font-weight: 231;
+}
+
+.uploadButton {
+    border-radius: 10px;
+    border: 2px solid var(--clr-gold);
     margin-inline: auto;
+    padding: 0.75rem 2rem;
+    color: var(--clr-white-70);
+    font-size: var(--fs-2xl);
+}
+
+.uploadButton::before {
+    border-radius: 10px;
 }
