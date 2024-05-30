@@ -1,11 +1,12 @@
 import {createContext, useContext, useMemo} from "react"
 import {useNavigate} from "react-router-dom"
 import {useLocalStorage} from "./useLocalStorage"
+import {jwtDecode} from "jwt-decode"
 import PropTypes from "prop-types"
 const AuthContext = createContext()
 
 export const AuthProvider = ({children}) => {
-    const [user, setUser] = useLocalStorage("user", null)
+    const [user, setUser] = useLocalStorage("token", null)
     const navigate = useNavigate()
 
     const logout = () => {
@@ -14,23 +15,29 @@ export const AuthProvider = ({children}) => {
     }
 
     const login = async data => {
-        if (!data.name) {
+        if (!data.jwt) {
             logout()
         }
-        data.role = "user"
 
         setUser(data)
         navigate("/user-game")
     }
 
-    const value = useMemo(
-        () => ({
+    const value = useMemo(() => {
+        let decoded = null
+        if (user && user.jwt) {
+            decoded = jwtDecode(user.jwt)
+        }
+
+        return {
             user,
+            role: decoded ? decoded.role : null,
+            name: decoded ? decoded.name : null,
+            id: decoded ? decoded.id : null,
             login,
             logout,
-        }),
-        [user],
-    )
+        }
+    }, [user])
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
