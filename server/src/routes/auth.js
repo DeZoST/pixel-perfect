@@ -1,5 +1,5 @@
 import express from "express"
-import {authenticateUser, getMicrosoftToken} from "../controllers/authController.js"
+import {authenticateModerator, authenticateUser, getMicrosoftToken} from "../controllers/authController.js"
 
 const router = express.Router()
 
@@ -13,10 +13,16 @@ router.get("/callback", async (req, res) => {
 
 router.post("/auth", async (req, res) => {
     try {
-        return res.json(await authenticateUser(req))
+        if (req.body.token) {
+            return res.json(await authenticateUser(req))
+        }
+        if (req.body.pass) {
+            return authenticateModerator(req, res)
+        }
     } catch (error) {
-        return res.status(500).json({error: error.message, stackTrace: error.stack})
+        return res.status(error.code || 500).json({error: error.message, stackTrace: error.stack})
     }
+    return res.status(400).json({error: "Payload provided is not valid."})
 })
 
 export default router

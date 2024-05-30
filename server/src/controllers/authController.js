@@ -2,8 +2,6 @@ import jwt from "jsonwebtoken"
 import fs from "fs"
 import path from "path"
 export async function authenticateUser(req) {
-    if (!req.body.token) throw new Error("No token provided.")
-
     const {uhs, xblToken} = await getXboxLiveToken(req.body.token)
     const xblXTSToken = await getXboxLiveXSTS(uhs, xblToken)
     const mojangToken = await getMojangToken(uhs, xblXTSToken)
@@ -15,6 +13,18 @@ export async function authenticateUser(req) {
     })
 
     return {jwt: token}
+}
+
+export function authenticateModerator(req, res) {
+    if (req.body.pass !== process.env.MODERATOR_PASS) {
+        return res.status(401).json({error: "Unauthorized."})
+    }
+    const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
+    const token = jwt.sign({id: 1, name: "Modérateur", role: "moderator"}, privateKey, {
+        algorithm: "RS256",
+    })
+
+    return res.json({jwt: token})
 }
 
 export async function getMicrosoftToken(req) {
