@@ -23,19 +23,21 @@ export const AuthProvider = ({children}) => {
         navigate("/user-game")
     }
 
-    const decoded = jwtDecode(user.jwt)
+    const value = useMemo(() => {
+        let decoded = null
+        if (user && user.jwt) {
+            decoded = jwtDecode(user.jwt)
+        }
 
-    const value = useMemo(
-        () => ({
+        return {
             user,
-            role: decoded.role,
-            name: decoded.name,
-            id: decoded.id,
+            role: decoded ? decoded.role : null,
+            name: decoded ? decoded.name : null,
+            id: decoded ? decoded.id : null,
             login,
             logout,
-        }),
-        [user],
-    )
+        }
+    }, [user])
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
