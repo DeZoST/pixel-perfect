@@ -4,6 +4,7 @@ import ModeratorContent from "./components/moderator-login/ModeratorContent"
 import Switch from "../../components/switch/Switch"
 import Title from "../../components/title/Title"
 import {useState, useEffect} from "react"
+import {useNavigate} from "react-router-dom"
 import "animate.css"
 import {useSearchParams} from "react-router-dom"
 import {useAuthMutation} from "../../hooks/useAuthMutation"
@@ -17,7 +18,12 @@ const LoginPage = () => {
     const [isAnimating, setIsAnimating] = useState(false)
     const [content, setContent] = useState()
     const {mutate: authMutation} = useAuthMutation()
-    const {login} = useAuth()
+    const {login, user} = useAuth()
+    const navigate = useNavigate()
+
+    if (user) {
+        navigate("/game")
+    }
 
     const handleToggle = isOn => {
         setIsAnimating(true)

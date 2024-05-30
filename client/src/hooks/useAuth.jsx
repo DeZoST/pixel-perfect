@@ -20,7 +20,7 @@ export const AuthProvider = ({children}) => {
         }
 
         setUser(data)
-        navigate("/user-game")
+        navigate("/game")
     }
 
     const value = useMemo(() => {
