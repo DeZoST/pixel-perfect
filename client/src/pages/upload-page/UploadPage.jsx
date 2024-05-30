@@ -1,7 +1,7 @@
-import Button from "../../components/button/Button"
 import styles from "./UploadPage.module.css"
 import Title from "../../components/title/Title"
 import ButtonDisconnect from "../../components/button-disconnect/ButtonDisconnect"
+import Upload from "./components/upload/Upload"
 
 const UploadPage = () => {
     return (
@@ -21,16 +21,7 @@ const UploadPage = () => {
                             <hr />
                         </header>
                         <section className={styles.uploadSection}>
-                            <div className={styles.uploadIconContainer}>
-                                <img src="/images/upload-icon.png" alt="upload icon" />
-                            </div>
-                            <div className={styles.uploadDescriptionContainer}>
-                                <p className={styles.uploadDescription}>
-                                    Glisser-déposer un fichier vidéo à télécharger
-                                </p>
-                                <p className={`${styles.uploadDescription} ${styles.or}`}>ou</p>
-                                <Button text="Séléctionner un fichier" className={styles.uploadButton} />
-                            </div>
+                            <Upload />
                         </section>
                     </form>
                 </div>
