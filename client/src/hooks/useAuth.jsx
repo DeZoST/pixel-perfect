@@ -20,7 +20,12 @@ export const AuthProvider = ({children}) => {
         }
 
         setUser(data)
-        navigate("/game")
+        let decoded = jwtDecode(data.jwt)
+        console.log(decoded)
+        if (decoded.role == "moderator") {
+            return navigate("/upload")
+        }
+        return navigate("/game")
     }
 
     const value = useMemo(() => {

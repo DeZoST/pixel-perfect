@@ -6,6 +6,7 @@ import GamePage from "./pages/game-page/GamePage"
 import {QueryClient, QueryClientProvider} from "react-query"
 import {ProtectedRoute} from "./components/protectedRoute"
 import {AuthProvider} from "./hooks/useAuth"
+import PanelPage from "./pages/panel-page/PanelPage"
 
 function App() {
     const queryClient = new QueryClient()
@@ -31,6 +32,15 @@ function App() {
                             element={
                                 <ProtectedRoute>
                                     <GamePage />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            exact
+                            path="panel"
+                            element={
+                                <ProtectedRoute moderatorOnly>
+                                    <PanelPage />
                                 </ProtectedRoute>
                             }
                         />

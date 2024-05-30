@@ -18,12 +18,8 @@ const LoginPage = () => {
     const [isAnimating, setIsAnimating] = useState(false)
     const [content, setContent] = useState()
     const {mutate: authMutation} = useAuthMutation()
-    const {login, user} = useAuth()
+    const {login, user, role} = useAuth()
     const navigate = useNavigate()
-
-    if (user) {
-        navigate("/game")
-    }
 
     const handleToggle = isOn => {
         setIsAnimating(true)
@@ -59,6 +55,12 @@ const LoginPage = () => {
         }
     }, [isAnimating, isModerator])
 
+    if (user) {
+        if (role === "moderator") {
+            return navigate("/upload")
+        }
+        navigate("/game")
+    }
     return (
         <section className={`${styles.loginPage}`}>
             <div className={`${styles.Container} container`}>

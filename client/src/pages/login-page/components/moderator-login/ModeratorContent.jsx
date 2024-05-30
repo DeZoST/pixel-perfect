@@ -3,11 +3,15 @@ import styles from "./ModeratorContent.module.css"
 import {useState} from "react"
 import PropTypes from "prop-types"
 import {useNavigate} from "react-router-dom"
+import {useAuth} from "../../../../hooks/useAuth"
+import {useModeratorAuthMutation} from "../../../../hooks/useAuthMutation"
 
 const ModeratorContent = ({className}) => {
     const [code, setCode] = useState("")
     const [_, setError] = useState("")
     const navigate = useNavigate()
+    const {login} = useAuth()
+    const {mutate: mutateAuthModerator} = useModeratorAuthMutation()
 
     const handleChange = e => {
         setCode(e.target.value)
@@ -18,20 +22,15 @@ const ModeratorContent = ({className}) => {
         setError("")
 
         try {
-            const response = await fetch("/api/verify-admin-code", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            mutateAuthModerator(code, {
+                onSuccess: resp => {
+                    console.log(resp)
+                    login(resp)
                 },
-                body: JSON.stringify({code}),
+                onError: error => {
+                    setError(error.error || "Le mot de passe est incorrect.")
+                },
             })
-
-            if (response.ok) {
-                navigate("/admin-game")
-            } else {
-                const data = await response.json()
-                setError(data.message || "Le mot de passe est incorrect.")
-            }
         } catch (error) {
             setError("Une erreur s'est produite, veuillez réessayer.")
         }

@@ -17,7 +17,7 @@ export async function authenticateUser(req) {
 
 export function authenticateModerator(req, res) {
     if (req.body.pass !== process.env.MODERATOR_PASS) {
-        return res.status(401).json({error: "Unauthorized."})
+        return res.status(401).json({error: "Le mot de passe est incorrect."})
     }
     const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
     const token = jwt.sign({id: 1, name: "Modérateur", role: "moderator"}, privateKey, {

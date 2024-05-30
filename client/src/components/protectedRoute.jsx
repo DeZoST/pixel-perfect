@@ -2,10 +2,9 @@ import {Navigate} from "react-router-dom"
 import PropTypes from "prop-types"
 import {useAuth} from "../hooks/useAuth"
 
-export const ProtectedRoute = ({children}) => {
-    const {user} = useAuth()
-    if (!user) {
-        // user is not authenticated
+export const ProtectedRoute = ({children, moderatorOnly}) => {
+    const {user, role} = useAuth()
+    if (!user || (moderatorOnly && role !== "moderator")) {
         return <Navigate to="/login" />
     }
     return children
@@ -13,4 +12,5 @@ export const ProtectedRoute = ({children}) => {
 
 ProtectedRoute.propTypes = {
     children: PropTypes.node,
+    moderatorOnly: PropTypes.bool,
 }
