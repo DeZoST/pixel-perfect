@@ -1,6 +1,7 @@
 .buttonDisconnect {
     padding: 1.15rem 4.65rem;
     color: var(--clr-white-70);
+    font-size: var(--fs-2xl);
     border-radius: 10px;
 }
 
