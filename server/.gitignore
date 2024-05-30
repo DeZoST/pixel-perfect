@@ -1,2 +1,4 @@
 node_modules
 .env
+RS256.key
+RS256.key.pub

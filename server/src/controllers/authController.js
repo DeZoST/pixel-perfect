@@ -1,3 +1,6 @@
+import jwt from "jsonwebtoken"
+import fs from "fs"
+import path from "path"
 export async function authenticateUser(req) {
     if (!req.body.token) throw new Error("No token provided.")
 
@@ -6,7 +9,12 @@ export async function authenticateUser(req) {
     const mojangToken = await getMojangToken(uhs, xblXTSToken)
     const mojangProfile = await getMojangProfile(mojangToken)
 
-    return mojangProfile
+    const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
+    const token = jwt.sign({id: mojangProfile.id, name: mojangProfile.name, role: "user"}, privateKey, {
+        algorithm: "RS256",
+    })
+
+    return {jwt: token}
 }
 
 export async function getMicrosoftToken(req) {
