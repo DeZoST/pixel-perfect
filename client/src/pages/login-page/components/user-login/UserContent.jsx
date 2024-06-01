@@ -7,7 +7,7 @@ const UserContent = ({className}) => {
     const loginUrl =
         `https://login.live.com/oauth20_authorize.srf?client_id=${import.meta.env.VITE_CLIENT_ID}&` +
         `response_type=code&` +
-        `redirect_uri=${import.meta.env.VITE_SERVER_URL}/callback&` +
+        `redirect_url=${import.meta.env.VITE_SERVER_URL}/callback&` +
         `scope=XboxLive.signin%20offline_access`
     return (
         <div className={`${styles.buttonContainer} ${className}`}>
