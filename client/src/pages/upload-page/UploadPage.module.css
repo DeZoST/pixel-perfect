@@ -6,7 +6,6 @@
     height: 100vh;
     font-size: var(--fs-base);
     display: flex;
-    overflow: hidden;
 }
 
 .Container {
@@ -26,21 +25,27 @@
 }
 
 .uploadContainer {
-    height: 100%;
+    margin-top: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
 }
 
 .uploadForm {
-    padding: 2rem 0 2rem;
+    padding: 0 0 0rem;
     background-color: var(--clr-gold-10);
     border-radius: 10px;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+}
+
+.headerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0 0;
+    gap: 2rem;
 }
 
 .label {
@@ -49,7 +54,6 @@
     font-family: "Inter", sans-serif;
     font-weight: 400;
     padding-left: 2rem;
-    margin-bottom: 1.5rem;
     line-height: 1;
 }
 
@@ -58,14 +62,4 @@ hr {
     height: 1px;
     background-color: var(--clr-gold);
     border: none;
-}
-
-.uploadSection {
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    align-items: center;
-    padding: 0 25rem;
 }

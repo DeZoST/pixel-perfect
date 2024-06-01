@@ -54,6 +54,15 @@ const Upload = () => {
         }
     }
 
+    const handleReset = () => {
+        setVideoPreview(null)
+        setFileName("")
+        setFileSize(0)
+        setUploadSuccess(false)
+        setErrorMessage("")
+        fileInputRef.value = ""
+    }
+
     return (
         <>
             {uploadSuccess ? (
@@ -64,9 +73,10 @@ const Upload = () => {
                     fileName={fileName}
                     fileSize={fileSize}
                     onUploadSuccess={submitForm}
+                    onReset={handleReset}
                 />
             ) : (
-                <>
+                <section className={styles.uploadSection}>
                     <div className={styles.uploadIconContainer}>
                         <img src="/images/upload-icon.png" alt="upload icon" />
                     </div>
@@ -88,7 +98,7 @@ const Upload = () => {
                         />
                     </div>
                     {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-                </>
+                </section>
             )}
         </>
     )
