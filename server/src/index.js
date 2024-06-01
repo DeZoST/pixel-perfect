@@ -5,6 +5,11 @@ import cors from "cors"
 import express from "express"
 import httpRoutes from "./routes/api.js"
 import authRoutes from "./routes/auth.js"
+import fs from "fs"
+
+if (!fs.existsSync("./uploads")) {
+    fs.mkdirSync("./uploads")
+}
 
 const app = express()
 const port = 3000

@@ -3,6 +3,7 @@ import Button from "../../../../components/button/Button"
 import UploadPreview from "../upload-preview/UploadPreview"
 import UploadSuccess from "../upload-success/UploadSuccess"
 import styles from "./Upload.module.css"
+import axios from "axios"
 
 const Upload = () => {
     const fileInputRef = useRef(null)
@@ -10,7 +11,21 @@ const Upload = () => {
     const [videoPreview, setVideoPreview] = useState(null)
     const [fileName, setFileName] = useState("")
     const [fileSize, setFileSize] = useState(0)
+    const [file, setFile] = useState(null)
     const [uploadSuccess, setUploadSuccess] = useState(false)
+
+    const submitForm = () => {
+        const UPLOAD_URL = `${import.meta.env.VITE_SERVER_URL}/api/upload`
+        const formData = new FormData()
+        formData.append("video", file)
+
+        axios
+            .post(UPLOAD_URL, formData)
+            .then(res => {
+                setUploadSuccess(true)
+            })
+            .catch(err => alert("Une erreur est survenue lors de l'envoi de la vidéo."))
+    }
 
     const handleFileChange = event => {
         const file = event.target.files[0]
@@ -32,14 +47,11 @@ const Upload = () => {
             } else {
                 setErrorMessage("")
                 setVideoPreview(URL.createObjectURL(file))
+                setFile(file)
                 setFileName(file.name)
                 setFileSize((file.size / (1024 * 1024)).toFixed(2)) // Taille en Mo
             }
         }
-    }
-
-    const handleUploadSuccess = () => {
-        setUploadSuccess(true)
     }
 
     return (
@@ -51,7 +63,7 @@ const Upload = () => {
                     videoPreview={videoPreview}
                     fileName={fileName}
                     fileSize={fileSize}
-                    onUploadSuccess={handleUploadSuccess}
+                    onUploadSuccess={submitForm}
                 />
             ) : (
                 <>
