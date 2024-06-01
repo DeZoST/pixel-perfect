@@ -35,7 +35,6 @@
 
 .uploadForm {
     padding: 2rem 0 2rem;
-    width: 80%;
     background-color: var(--clr-gold-10);
     border-radius: 10px;
     margin-inline: auto;
@@ -68,4 +67,5 @@ hr {
     justify-content: center;
     gap: 2rem;
     align-items: center;
+    padding: 0 25rem;
 }
