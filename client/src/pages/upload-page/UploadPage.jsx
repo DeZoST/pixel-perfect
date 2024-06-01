@@ -20,9 +20,7 @@ const UploadPage = () => {
                             </h3>
                             <hr />
                         </header>
-                        <section className={styles.uploadSection}>
-                            <Upload />
-                        </section>
+                        <Upload />
                     </form>
                 </div>
             </div>

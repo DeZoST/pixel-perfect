@@ -1,0 +1,35 @@
+.videoPreview {
+    max-width: 400px;
+    border: 2px solid var(--clr-gold);
+}
+
+.previewContainer {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.fileInfo {
+    display: flex;
+    flex-direction: column;
+    color: var(--clr-white-70);
+    font-size: var(--fs-xl);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.fileInfo p {
+    max-width: 30ch;
+}
+
+.uploadButton {
+    background: var(--clr-gold-10);
+    color: var(--clr-white-70);
+    border: 2px solid var(--clr-gold-50);
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 10px;
+}
