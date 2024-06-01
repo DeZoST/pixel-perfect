@@ -33,7 +33,7 @@ export async function getMicrosoftToken(req) {
         client_id: process.env.MICROSOFT_CLIENT_ID,
         client_secret: process.env.MICROSOFT_CLIENT_SECRET,
         code: req.query.code,
-        redirect_uri: process.env.MICROSOFT_REDIRECT_URI,
+        redirect_url: process.env.MICROSOFT_REDIRECT_URL,
         grant_type: "authorization_code",
     }).toString()
 
