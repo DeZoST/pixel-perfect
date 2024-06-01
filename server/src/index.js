@@ -6,6 +6,7 @@ import express from "express"
 import httpRoutes from "./routes/api.js"
 import authRoutes from "./routes/auth.js"
 import fs from "fs"
+import {openDb} from "./db/db.js"
 
 if (!fs.existsSync("./uploads")) {
     fs.mkdirSync("./uploads")
@@ -13,6 +14,11 @@ if (!fs.existsSync("./uploads")) {
 
 const app = express()
 const port = 3000
+
+const db = await openDb()
+await db.migrate({
+    migrationsPath: "./src/db/migrations",
+})
 
 app.use(cors())
 app.use(express.json())
