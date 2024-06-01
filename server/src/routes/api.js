@@ -22,12 +22,15 @@ router.post("/upload", upload.single("video"), (req, res) => {
     res.json({message: "Video uploaded successfully!"})
 })
 
-// vote route
+// GetTeams routes
+
+// CreateOrUpdate vote route
 
 // change waitingSentence route
 
 // toggle pause route
 
 // start game route
+// Can't start game if ALL teams don't have a video
 
 export default router
