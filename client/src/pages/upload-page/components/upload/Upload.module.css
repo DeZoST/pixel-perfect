@@ -1,3 +1,42 @@
+.uploadContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6rem;
+}
+
+.uploadForm {
+    background-color: var(--clr-gold-10);
+    border-radius: 10px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0 0;
+    gap: 2rem;
+}
+
+.label {
+    color: var(--clr-white);
+    font-size: var(--fs-3xl);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    padding-left: 2rem;
+    line-height: 1;
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    background-color: var(--clr-gold);
+    border: none;
+}
+
 .uploadIconContainer {
     background-color: var(--clr-gold-20);
     border-radius: 50%;

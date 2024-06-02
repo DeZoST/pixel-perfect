@@ -1,13 +1,3 @@
-.uploadPage {
-    background: url("/images/bg-image.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    font-size: var(--fs-base);
-    display: flex;
-}
-
 .Container {
     display: flex;
     flex-direction: column;
@@ -22,39 +12,6 @@
 
 .title {
     margin-top: 2rem;
-}
-
-.uploadContainer {
-    margin-top: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.uploadForm {
-    padding: 0 0 0rem;
-    background-color: var(--clr-gold-10);
-    border-radius: 10px;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.headerForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem 0 0;
-    gap: 2rem;
-}
-
-.label {
-    color: var(--clr-white);
-    font-size: var(--fs-3xl);
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    padding-left: 2rem;
-    line-height: 1;
 }
 
 hr {

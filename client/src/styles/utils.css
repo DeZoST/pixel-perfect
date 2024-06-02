@@ -148,10 +148,17 @@ a {
     color: inherit;
 }
 
+html {
+    background: url("/images/bg-image.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
 .container {
     width: 90%;
     margin-inline: auto;
-    padding: 0;
 }
 
 /* XS */
