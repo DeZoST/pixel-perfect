@@ -23,7 +23,7 @@ await db.migrate({
 app.use(cors())
 app.use(express.json())
 app.use("/api", httpRoutes)
-app.use(authRoutes)
+app.use(cors(), authRoutes)
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`)
