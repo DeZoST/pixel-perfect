@@ -17,9 +17,14 @@ CREATE TABLE PLAYER (
 
 -- TODO Remove the insert statements below once deployable
 INSERT INTO TEAM (NAME) VALUES ('Team 1');
+INSERT INTO TEAM (NAME) VALUES ('Team 2');
+INSERT INTO TEAM (NAME) VALUES ('Team 3');
+INSERT INTO TEAM (NAME) VALUES ('Team 4');
+INSERT INTO TEAM (NAME) VALUES ('Team 5');
+INSERT INTO TEAM (NAME) VALUES ('Team 6');
 
 INSERT INTO PLAYER (NAME, TEAM_ID) VALUES ('Baldrak', 1);
-INSERT INTO PLAYER (NAME, TEAM_ID) VALUES ('DeZoST', 1);
+INSERT INTO PLAYER (NAME, TEAM_ID) VALUES ('DeZoST', 4);
 
 --------------------------------------------------------------------------------
 -- Down

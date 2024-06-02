@@ -1,6 +1,7 @@
 import express from "express"
 import multer from "multer"
 import path from "path"
+import {openDb} from "../db/db.js"
 
 const router = express.Router()
 const upload = multer({
@@ -23,6 +24,17 @@ router.post("/upload", upload.single("video"), (req, res) => {
 })
 
 // GetTeams routes
+
+router.get("/teams", async (req, res) => {
+    try {
+        const db = await openDb()
+        const teams = await db.all("SELECT * FROM TEAM")
+        res.json(teams)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: "Failed to retrieve teams"})
+    }
+})
 
 // CreateOrUpdate vote route
 
