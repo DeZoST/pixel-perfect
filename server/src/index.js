@@ -5,6 +5,7 @@ import cors from "cors"
 import express from "express"
 import httpRoutes from "./routes/api.js"
 import authRoutes from "./routes/auth.js"
+import gameRoutes from "./routes/game.js"
 import fs from "fs"
 import {openDb} from "./db/db.js"
 
@@ -22,7 +23,10 @@ await db.migrate({
 
 app.use(cors())
 app.use(express.json())
+// TODO protect api routes for users only
 app.use("/api", httpRoutes)
+// TODO protect game routes for moderator only
+app.use("/api/game", gameRoutes)
 app.use(cors(), authRoutes)
 
 app.listen(port, () => {

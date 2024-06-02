@@ -2,8 +2,7 @@ import express from "express"
 import multer from "multer"
 import path from "path"
 
-import {getTeams, updateWaitingSentence} from "../controllers/apiController.js"
-
+import {getTeams, createOrUpdateVote} from "../controllers/apiController.js"
 const router = express.Router()
 const upload = multer({
     storage: multer.diskStorage({
@@ -17,22 +16,16 @@ const upload = multer({
 })
 
 router.post("/upload", upload.single("video"), (req, res) => {
+    // TODO : modify the HAS_VIDEO of the corresponding team & rename the file with the team name
     return res.json({message: "Video uploaded successfully!"})
 })
 
 router.get("/teams", async (req, res) => {
-    await getTeams(req, res)
+    return await getTeams(req, res)
 })
 
-// CreateOrUpdate vote route
-
-router.put("/waitingSentence", async (req, res) => {
-    return await updateWaitingSentence(req, res)
+router.put("/vote", async (req, res) => {
+    return await createOrUpdateVote(req, res)
 })
-
-// toggle pause route
-
-// start game route
-// Can't start game if ALL teams don't have a video
 
 export default router
