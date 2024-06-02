@@ -1,7 +1,8 @@
 import express from "express"
 import multer from "multer"
 import path from "path"
-import {openDb} from "../db/db.js"
+
+import {getTeams, updateWaitingSentence} from "../controllers/apiController.js"
 
 const router = express.Router()
 const upload = multer({
@@ -15,30 +16,19 @@ const upload = multer({
     }),
 })
 
-router.post("/test", (req, res) => {
-    res.json({message: "Hello, World!"})
-})
-
 router.post("/upload", upload.single("video"), (req, res) => {
-    res.json({message: "Video uploaded successfully!"})
+    return res.json({message: "Video uploaded successfully!"})
 })
-
-// GetTeams routes
 
 router.get("/teams", async (req, res) => {
-    try {
-        const db = await openDb()
-        const teams = await db.all("SELECT * FROM TEAM")
-        res.json(teams)
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({message: "Failed to retrieve teams"})
-    }
+    await getTeams(req, res)
 })
 
 // CreateOrUpdate vote route
 
-// change waitingSentence route
+router.put("/waitingSentence", async (req, res) => {
+    return await updateWaitingSentence(req, res)
+})
 
 // toggle pause route
 
