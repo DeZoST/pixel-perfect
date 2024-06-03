@@ -33,9 +33,19 @@ const PanelPage = () => {
                 </div>
             </section>
             <section className={`${styles.lobbyContainer}`}>
-                <h1 className={`${styles.lobbyTitle}`}>Joueur dans le lobby</h1>
+                <h1 className={`${styles.lobbyTitle}`}>Joueurs dans le lobby</h1>
                 <div>
-                    <table></table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Numéro</th>
+                                <th scope="col">Equipes</th>
+                                <th scope="col">Classement</th>
+                                <th scope="col">Points</th>
+                                <th scope="col">Laines</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </section>
         </section>

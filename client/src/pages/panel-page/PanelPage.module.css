@@ -90,10 +90,41 @@
 .lobbyContainer {
     background: var(--clr-gold-10);
     margin-top: 3.5rem;
-    padding: 3rem 2rem;
+    padding: 3rem;
 }
 
 .lobbyTitle {
     font-family: "Bebas Neue", sans-serif;
     font-size: var(--fs-6xl);
+}
+
+table {
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+th,
+td {
+    text-align: center;
+    font-size: var(--fs-xl);
+    border: 2px solid var(--clr-white);
+}
+
+th:nth-child(1),
+th:nth-child(4) {
+    padding: 1rem;
+    width: 10%;
+}
+
+th:nth-child(2),
+th:nth-child(3) {
+    padding: 1rem;
+    width: 15%;
+}
+
+th:nth-child(5) {
+    width: 40%;
+    text-align: left;
+    padding: 0 2.5rem;
 }
