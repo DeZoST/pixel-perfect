@@ -5,6 +5,7 @@ import Proptypes from "prop-types"
 
 const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onReset}) => {
     const [teams, setTeams] = useState([])
+    const [selectedTeam, setSelectedTeam] = useState("")
 
     useEffect(() => {
         async function fetchTeams() {
@@ -15,9 +16,18 @@ const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onRes
         fetchTeams()
     }, [])
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (!selectedTeam) {
+            alert("Veuillez sélectionner une équipe.")
+            return
+        }
+        onUploadSuccess()
+    }
+
     return (
         <div className={styles.uploadContainer}>
-            <form className={styles.uploadForm}>
+            <form className={styles.uploadForm} onSubmit={handleSubmit}>
                 <header className={styles.headerForm}>
                     <h3 className={styles.label} htmlFor="fileInput">
                         Importer une vidéo
@@ -44,7 +54,13 @@ const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onRes
                         <label htmlFor="teamName" className={styles.teamLabel}>
                             Nom de l&apos;équipe
                         </label>
-                        <select name="teamName" className={styles.teamDropdown}>
+                        <select
+                            name="teamName"
+                            value={selectedTeam}
+                            onChange={e => setSelectedTeam(e.target.value)}
+                            className={styles.teamDropdown}
+                            required
+                        >
                             <option value="">Sélectionner une équipe</option>
                             {teams.map(team => (
                                 <option key={team.ID} value={team.ID}>
@@ -53,7 +69,7 @@ const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onRes
                             ))}
                         </select>
                     </div>
-                    <Button type="button" text="Envoyer" onClick={onUploadSuccess} className={styles.uploadButton} />
+                    <Button type="submit" text="Envoyer" className={styles.uploadButton} />
                 </div>
             </form>
         </div>
