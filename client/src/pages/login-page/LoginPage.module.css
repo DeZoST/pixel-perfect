@@ -1,10 +1,5 @@
 .loginPage {
-    background: url("/images/bg-image.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     height: 100vh;
-    font-size: var(--fs-base);
     display: flex;
     overflow: hidden;
 }
