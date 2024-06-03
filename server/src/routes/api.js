@@ -24,7 +24,7 @@ router.get("/teams", async (req, res) => {
     return await getTeams(req, res)
 })
 
-router.put("/vote", async (req, res) => {
+router.put("/game/vote", async (req, res) => {
     return await createOrUpdateVote(req, res)
 })
 
