@@ -12,6 +12,7 @@ import EventEmitter from "events"
 import {emitGameUpdatedMiddleware} from "./middlewares/gameUpdateEvent.js"
 import http from "http"
 import {Server} from "socket.io"
+import {snakeToCamel} from "./utils.js"
 
 const app = express()
 const port = 3000
@@ -40,13 +41,13 @@ app.use(cors(), authRoutes)
 global.emitter.on("gameUpdated", async () => {
     const db = await openDb()
     const game = await db.get("SELECT * FROM GAME")
-    io.emit("game.listen", game)
+    io.emit("game.listen", snakeToCamel(game))
 })
 
 io.on("connection", async socket => {
     const db = await openDb()
     const game = await db.get("SELECT * FROM GAME")
-    socket.emit("game.listen", game)
+    socket.emit("game.listen", snakeToCamel(game))
 })
 server.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`)
