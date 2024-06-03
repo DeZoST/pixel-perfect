@@ -8,13 +8,21 @@ import authRoutes from "./routes/auth.js"
 import gameRoutes from "./routes/game.js"
 import fs from "fs"
 import {openDb} from "./db/db.js"
+import EventEmitter from "events"
+import {emitGameUpdatedMiddleware} from "./middlewares/gameUpdateEvent.js"
+import http from "http"
+import {Server} from "socket.io"
+
+const app = express()
+const port = 3000
+const server = http.createServer(app)
+const io = new Server(server)
 
 if (!fs.existsSync("./uploads")) {
     fs.mkdirSync("./uploads")
 }
 
-const app = express()
-const port = 3000
+global.emitter = new EventEmitter()
 
 const db = await openDb()
 await db.migrate({
@@ -26,9 +34,20 @@ app.use(express.json())
 // TODO protect api routes for users only
 app.use("/api", httpRoutes)
 // TODO protect game routes for moderator only
-app.use("/api/game", gameRoutes)
+app.use("/api/game", gameRoutes, emitGameUpdatedMiddleware)
 app.use(cors(), authRoutes)
 
-app.listen(port, () => {
+global.emitter.on("gameUpdated", async () => {
+    const db = await openDb()
+    const game = await db.get("SELECT * FROM GAME")
+    io.emit("game.listen", game)
+})
+
+io.on("connection", async socket => {
+    const db = await openDb()
+    const game = await db.get("SELECT * FROM GAME")
+    socket.emit("game.listen", game)
+})
+server.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`)
 })

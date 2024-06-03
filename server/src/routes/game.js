@@ -3,24 +3,29 @@ import express from "express"
 
 const router = express.Router()
 
-router.put("/waitingSentence", async (req, res) => {
-    return await updateWaitingSentence(req, res)
+router.put("/waitingSentence", async (req, res, next) => {
+    await updateWaitingSentence(req, res)
+    next()
 })
 
-router.post("/pause", async (req, res) => {
-    return await pause(req, res)
+router.post("/pause", async (req, res, next) => {
+    await pause(req, res)
+    next()
 })
 
-router.post("/resume", async (req, res) => {
-    return await resume(req, res)
+router.post("/resume", async (req, res, next) => {
+    await resume(req, res)
+    next()
 })
 
-router.post("/start", async (req, res) => {
-    return await start(req, res)
+router.post("/start", async (req, res, next) => {
+    await start(req, res)
+    next()
 })
 
-router.post("/reset", async (req, res) => {
-    return await handleResetGame(req, res)
+router.post("/reset", async (req, res, next) => {
+    await handleResetGame(req, res)
+    next()
 })
 
 export default router

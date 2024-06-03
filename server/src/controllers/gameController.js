@@ -1,5 +1,4 @@
 import {openDb} from "../db/db.js"
-
 global.gameTicker = null
 global.gameTime = 10
 
@@ -7,7 +6,7 @@ export async function updateWaitingSentence(req, res) {
     try {
         const db = await openDb()
         await db.run("UPDATE GAME SET WAITING_SENTENCE = ?", req.body.sentence)
-        res.json({message: "Waiting sentence updated successfully!"})
+        return res.json({message: "Waiting sentence updated successfully!"})
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
@@ -18,7 +17,7 @@ export async function pause(req, res) {
     try {
         const db = await openDb()
         await db.run("UPDATE GAME SET IS_PAUSED = TRUE")
-        res.json({message: "Pause updated successfully!"})
+        return res.json({message: "Pause updated successfully!"})
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
@@ -30,7 +29,7 @@ export async function resume(req, res) {
         const db = await openDb()
         await db.run("UPDATE GAME SET IS_PAUSED = FALSE")
         startGameTicker()
-        res.json({message: "Game resumed!"})
+        return res.json({message: "Game resumed!"})
     } catch (error) {
         console.error(error)
         res.status(500).json({error: error.message})
@@ -90,6 +89,7 @@ function startGameTicker() {
     global.gameTicker = setInterval(async () => {
         try {
             await updateGameTimer()
+            global.emitter.emit("gameUpdated")
         } catch (error) {
             console.error("Error updating time:", error)
             clearInterval(global.gameTicker)
