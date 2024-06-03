@@ -2,14 +2,12 @@ import Button from "../../../../components/button/Button"
 import styles from "./ModeratorContent.module.css"
 import {useState} from "react"
 import PropTypes from "prop-types"
-import {useNavigate} from "react-router-dom"
 import {useAuth} from "../../../../hooks/useAuth"
 import {useModeratorAuthMutation} from "../../../../hooks/useAuthMutation"
 
 const ModeratorContent = ({className}) => {
     const [code, setCode] = useState("")
     const [_, setError] = useState("")
-    const navigate = useNavigate()
     const {login} = useAuth()
     const {mutate: mutateAuthModerator} = useModeratorAuthMutation()
 
