@@ -1,0 +1,99 @@
+.panelPage {
+    font-family: "Inter", sans-serif;
+    color: var(--clr-white);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 5rem;
+}
+
+.panelContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.panelMessageContainer {
+    display: flex;
+    gap: 5rem;
+    align-items: end;
+    margin-top: 1.5rem;
+}
+
+.messageContainer {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--clr-gold-10);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.messageTitle {
+    font-size: var(--fs-3xl);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.messageInput {
+    border: 3px solid var(--clr-gold);
+    border-radius: 5px;
+    background: none;
+    color: var(--clr-gold);
+    padding: 0.75rem 1rem;
+    font-size: var(--fs-xl);
+}
+
+.buttonConfirm {
+    height: fit-content;
+    padding: 1rem 3.5rem;
+    font-size: var(--fs-2xl);
+    color: var(--clr-white-70);
+    border-radius: 10px;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3.5rem;
+}
+
+.gameControlContainer {
+    display: flex;
+    gap: 4rem;
+}
+
+.buttonPause {
+    font-size: var(--fs-2xl);
+    color: var(--clr-white);
+    padding: 0 5rem;
+    border-radius: 10px;
+}
+
+.buttonStart {
+    font-size: var(--fs-2xl);
+    color: var(--clr-white);
+    padding: 0 5rem;
+    border-radius: 10px;
+}
+
+.buttonCaster {
+    font-size: var(--fs-4xl);
+    color: var(--clr-white);
+    padding: 1.5rem 5rem;
+    border-radius: 10px;
+}
+
+.lobbyContainer {
+    background: var(--clr-gold-10);
+    margin-top: 3.5rem;
+    padding: 3rem 2rem;
+}
+
+.lobbyTitle {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: var(--fs-6xl);
+}

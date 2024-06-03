@@ -1,7 +1,6 @@
 import styles from "./PanelPage.module.css"
 import Button from "../../components/button/Button"
 import ButtonDisconnect from "../../components/button-disconnect/ButtonDisconnect"
-import Switch from "../../components/switch/Switch"
 
 const PanelPage = () => {
     return (
@@ -25,19 +24,16 @@ const PanelPage = () => {
                 </div>
                 <div className={`${styles.buttonsContainer}`}>
                     <div className={`${styles.gameControlContainer}`}>
-                        <Button text="Commencer la partie" />
-                        <div className={`${styles.switchContainer}`}>
-                            <h3 className={`${styles.switchTitle}`}>Mettre le jeu en pause :</h3>
-                            <Switch />
-                        </div>
+                        {/* TODO: Changer le texte et la couleur du bouton quand il est cliqué pour Arreter la partie*/}
+                        <Button text="Commencer la partie" className={`${styles.buttonStart}`} />
+                        {/* TODO: Changer le texte et la couleur du bouton quand la partie est en pause, pour savoir si c'est actuellement en pause ou en cours */}
+                        <Button text="Metttre le jeu en pause" className={`${styles.buttonPause}`} />
                     </div>
                     <Button text="Mode Casteur" className={`${styles.buttonCaster}`} />
                 </div>
             </section>
             <section className={`${styles.lobbyContainer}`}>
-                <div>
-                    <h1>Joueur dans le lobby</h1>
-                </div>
+                <h1 className={`${styles.lobbyTitle}`}>Joueur dans le lobby</h1>
                 <div>
                     <table></table>
                 </div>
