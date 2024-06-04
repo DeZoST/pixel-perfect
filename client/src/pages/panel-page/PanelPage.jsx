@@ -1,8 +1,23 @@
 import styles from "./PanelPage.module.css"
 import Button from "../../components/button/Button"
 import ButtonDisconnect from "../../components/button-disconnect/ButtonDisconnect"
+import {useState} from "react"
+import {io} from "socket.io-client"
+
+const socket = io("http://localhost:3000")
 
 const PanelPage = () => {
+    const [message, setMessage] = useState("")
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (!message.trim()) {
+            alert("Veuillez entrer une phrase valide.")
+            return
+        }
+        socket.emit("updateWaitingSentence", {message: message.trim()})
+        setMessage("")
+    }
     return (
         <section className={`${styles.panelPage} container`}>
             <section className={`${styles.panelContainer}`}>
@@ -10,17 +25,19 @@ const PanelPage = () => {
                     <header className={`${styles.header}`}>
                         <ButtonDisconnect className={`${styles.buttonDisconnect}`} />
                     </header>
-                    <div className={`${styles.panelMessageContainer}`}>
+                    <form onSubmit={handleSubmit} className={`${styles.panelMessageContainer}`}>
                         <div className={`${styles.messageContainer}`}>
                             <h2 className={`${styles.messageTitle}`}>Phrase d&apos;attente</h2>
                             <input
                                 type="text"
                                 placeholder="Phrase d'attente"
+                                value={message}
+                                onChange={e => setMessage(e.target.value)}
                                 className={`${styles.messageInput}`}
                             ></input>
                         </div>
-                        <Button text="Confirmer" className={`${styles.buttonConfirm}`} />
-                    </div>
+                        <Button type="submit" text="Confirmer" className={`${styles.buttonConfirm}`} />
+                    </form>
                 </div>
                 <div className={`${styles.buttonsContainer}`}>
                     <div className={`${styles.gameControlContainer}`}>

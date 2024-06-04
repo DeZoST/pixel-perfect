@@ -13,11 +13,12 @@ import {emitGameUpdatedMiddleware} from "./middlewares/gameUpdateEvent.js"
 import http from "http"
 import {Server} from "socket.io"
 import {snakeToCamel} from "./utils.js"
+import {initializeWebSocket} from "./routes/websocket.js"
 
 const app = express()
 const port = 3000
 const server = http.createServer(app)
-const io = new Server(server)
+initializeWebSocket(server)
 
 if (!fs.existsSync("./uploads")) {
     fs.mkdirSync("./uploads")
@@ -44,11 +45,6 @@ global.emitter.on("gameUpdated", async () => {
     io.emit("game.listen", snakeToCamel(game))
 })
 
-io.on("connection", async socket => {
-    const db = await openDb()
-    const game = await db.get("SELECT * FROM GAME")
-    socket.emit("game.listen", snakeToCamel(game))
-})
 server.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`)
 })
