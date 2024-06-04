@@ -1,0 +1,7 @@
+.waitingMessage {
+    font-size: var(--fs-6xl);
+    margin-top: 2.5rem;
+    color: var(--clr-white);
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 3px;
+}
