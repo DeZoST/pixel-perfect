@@ -1,0 +1,43 @@
+.gamePlayingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.title > div {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.timerText {
+    margin-top: 0.5rem;
+    color: var(--clr-gold);
+    font-size: var(--fs-3xl);
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 3px;
+}
+
+.mainGameContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.teamName {
+    color: var(--clr-white);
+    font-size: var(--fs-7xl);
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 3px;
+}
+
+.video {
+    width: 834px;
+}
+
+.woolsContainer {
+    display: flex;
+    gap: 2.4rem;
+}

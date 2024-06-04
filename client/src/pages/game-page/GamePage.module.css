@@ -3,9 +3,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     font-size: var(--fs-base);
     display: flex;
+    font-family: "Inter", sans-serif;
+    padding: 0 0 2rem;
 }
 
 .Container {
