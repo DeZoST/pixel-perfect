@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 import fs from "fs"
 import path from "path"
+import {decodeAndVerifyToken} from "../utils.js"
 export async function authenticateUser(req) {
     const {uhs, xblToken} = await getXboxLiveToken(req.body.token)
     const xblXTSToken = await getXboxLiveXSTS(uhs, xblToken)
@@ -25,6 +26,15 @@ export function authenticateModerator(req, res) {
     })
 
     return res.json({jwt: token})
+}
+
+export async function authenticateWS(socket, shouldBeModerator = false) {
+    const bearer = socket.request.headers.authorization ? socket.request.headers.authorization.split(" ")[1] : ""
+    const token = await decodeAndVerifyToken(bearer)
+    if (shouldBeModerator && token.role !== "moderator") {
+        return false
+    }
+    return token
 }
 
 export async function getMicrosoftToken(req) {

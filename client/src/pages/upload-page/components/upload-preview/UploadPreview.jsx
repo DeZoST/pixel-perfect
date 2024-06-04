@@ -2,14 +2,20 @@ import {useState, useEffect} from "react"
 import Button from "../../../../components/button/Button"
 import styles from "./UploadPreview.module.css"
 import Proptypes from "prop-types"
+import {useAuth} from "../../../../hooks/useAuth"
 
 const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onReset}) => {
     const [teams, setTeams] = useState([])
     const [selectedTeam, setSelectedTeam] = useState("")
+    const {user} = useAuth()
 
     useEffect(() => {
         async function fetchTeams() {
-            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/teams`)
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/teams`, {
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+            })
             const teamData = await response.json()
             setTeams(teamData)
         }
@@ -22,7 +28,7 @@ const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onRes
             alert("Veuillez sélectionner une équipe.")
             return
         }
-        onUploadSuccess()
+        onUploadSuccess(selectedTeam)
     }
 
     return (

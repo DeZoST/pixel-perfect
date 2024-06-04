@@ -3,6 +3,7 @@ import multer from "multer"
 import path from "path"
 
 import {getTeams, createOrUpdateVote} from "../controllers/apiController.js"
+import {isModeratorMiddleware} from "../middlewares/isModeratorMiddleware.js"
 const router = express.Router()
 const upload = multer({
     storage: multer.diskStorage({
@@ -15,7 +16,7 @@ const upload = multer({
     }),
 })
 
-router.post("/upload", upload.single("video"), (req, res) => {
+router.post("/upload", isModeratorMiddleware, upload.single("video"), (req, res) => {
     // TODO : modify the HAS_VIDEO of the corresponding team & rename the file with the team name
     return res.json({message: "Video uploaded successfully!"})
 })

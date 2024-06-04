@@ -4,6 +4,7 @@ import UploadPreview from "../upload-preview/UploadPreview"
 import UploadSuccess from "../upload-success/UploadSuccess"
 import styles from "./Upload.module.css"
 import axios from "axios"
+import {useAuth} from "../../../../hooks/useAuth"
 
 const Upload = () => {
     const fileInputRef = useRef(null)
@@ -13,14 +14,20 @@ const Upload = () => {
     const [fileSize, setFileSize] = useState(0)
     const [file, setFile] = useState(null)
     const [uploadSuccess, setUploadSuccess] = useState(false)
+    const {user} = useAuth()
 
-    const submitForm = () => {
+    const submitForm = team => {
         const UPLOAD_URL = `${import.meta.env.VITE_SERVER_URL}/api/upload`
         const formData = new FormData()
         formData.append("video", file)
-
+        formData.append("team", team)
         axios
-            .post(UPLOAD_URL, formData)
+            .post(UPLOAD_URL, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+            })
             .then(res => {
                 setUploadSuccess(true)
             })

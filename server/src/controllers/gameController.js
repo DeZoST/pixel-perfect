@@ -1,4 +1,5 @@
 import {openDb} from "../db/db.js"
+import {sendGameUpdates} from "../utils.js"
 global.gameTicker = null
 global.gameTime = 10
 
@@ -78,7 +79,7 @@ async function startGame() {
     }
     await resetGame()
     await db.run("UPDATE GAME SET IS_STARTED = TRUE")
-    selectTeamToVote()
+    await selectTeamToVote()
     startGameTicker()
 }
 
@@ -89,7 +90,7 @@ function startGameTicker() {
     global.gameTicker = setInterval(async () => {
         try {
             await updateGameTimer()
-            global.emitter.emit("gameUpdated")
+            await sendGameUpdates()
         } catch (error) {
             console.error("Error updating time:", error)
             clearInterval(global.gameTicker)

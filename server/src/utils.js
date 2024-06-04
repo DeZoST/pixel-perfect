@@ -1,3 +1,8 @@
+import jwt from "jsonwebtoken"
+import fs from "fs"
+import path from "path"
+import {openDb} from "./db/db.js"
+
 export function snakeToCamel(obj) {
     const newObj = {}
     for (const key in obj) {
@@ -8,6 +13,23 @@ export function snakeToCamel(obj) {
         }
     }
     return newObj
+}
+
+export async function sendGameUpdates() {
+    const db = await openDb()
+    const game = await db.get("SELECT * FROM GAME")
+    global.io.emit("game.listen", snakeToCamel(game))
+}
+
+export async function decodeAndVerifyToken(token) {
+    const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
+    try {
+        const decodedToken = await jwt.verify(token, privateKey, {algorithms: ["RS256"]})
+        return decodedToken
+    } catch (error) {
+        console.error(error.message)
+        return false
+    }
 }
 
 export function getWoolColor(wool) {

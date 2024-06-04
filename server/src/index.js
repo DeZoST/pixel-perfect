@@ -8,23 +8,23 @@ import authRoutes from "./routes/auth.js"
 import gameRoutes from "./routes/game.js"
 import fs from "fs"
 import {openDb} from "./db/db.js"
-import EventEmitter from "events"
 import {emitGameUpdatedMiddleware} from "./middlewares/gameUpdateEvent.js"
 import http from "http"
 import {Server} from "socket.io"
 import {snakeToCamel} from "./utils.js"
-import {initializeWebSocket} from "./routes/websocket.js"
+import {isModeratorMiddleware} from "./middlewares/isModeratorMiddleware.js"
+import {isUserMiddleware} from "./middlewares/isUserMiddleware.js"
+import {authenticateWS} from "./controllers/authController.js"
 
 const app = express()
 const port = 3000
 const server = http.createServer(app)
-initializeWebSocket(server)
+const io = new Server(server)
+global.io = io
 
 if (!fs.existsSync("./uploads")) {
     fs.mkdirSync("./uploads")
 }
-
-global.emitter = new EventEmitter()
 
 const db = await openDb()
 await db.migrate({
@@ -33,16 +33,22 @@ await db.migrate({
 
 app.use(cors())
 app.use(express.json())
-// TODO protect api routes for users only
-app.use("/api", httpRoutes)
-// TODO protect game routes for moderator only
-app.use("/api/game", gameRoutes, emitGameUpdatedMiddleware)
-app.use(cors(), authRoutes)
+app.use("/api", isUserMiddleware, httpRoutes)
+app.use("/api/game", isModeratorMiddleware, gameRoutes, emitGameUpdatedMiddleware)
+app.use(authRoutes)
 
-global.emitter.on("gameUpdated", async () => {
+io.on("connection", async socket => {
+    const token = await authenticateWS(socket)
+    if (!token) {
+        return socket.disconnect()
+    }
+    if (token.role === "moderator") {
+        socket.join("moderators")
+    }
+
     const db = await openDb()
     const game = await db.get("SELECT * FROM GAME")
-    io.emit("game.listen", snakeToCamel(game))
+    socket.emit("game.listen", snakeToCamel(game))
 })
 
 server.listen(port, () => {
