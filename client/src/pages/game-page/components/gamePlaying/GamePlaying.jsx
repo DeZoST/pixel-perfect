@@ -19,12 +19,12 @@ const GamePlaying = () => {
                         <video className={`${styles.video}`} controls></video>
                     </div>
                     <div className={`${styles.woolsContainer}`}>
-                        <Wool color="red" />
-                        <Wool color="pink" />
-                        <Wool color="lightgreen" />
-                        <Wool color="darkgreen" />
-                        <Wool color="blue" />
-                        <Wool color="yellow" />
+                        <Wool number={1} rarity="Superpoop" color="red" />
+                        <Wool number={2} rarity="Poop" color="pink" />
+                        <Wool number={3} rarity="Good" color="lightgreen" />
+                        <Wool number={4} rarity="Very good" color="darkgreen" />
+                        <Wool number={5} rarity="Epic" color="blue" />
+                        <Wool number={6} rarity="Legendary" color="yellow" />
                     </div>
                 </div>
             </section>

@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin-top: 12rem;
 }
 
 .title > div {
@@ -20,7 +21,7 @@
 .mainGameContainer {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -39,5 +40,5 @@
 
 .woolsContainer {
     display: flex;
-    gap: 2.4rem;
+    gap: 3rem;
 }

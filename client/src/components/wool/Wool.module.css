@@ -1,0 +1,24 @@
+.woolContainer {
+    position: relative;
+}
+
+.rarityText {
+    font-size: var(--fs-base);
+    width: 12ch;
+    padding: 0 1rem;
+    position: absolute;
+    top: -40px;
+    left: -8px;
+    z-index: 1;
+    background-color: var(--clr-gold-40);
+    backdrop-filter: blur(1rem);
+    border: 2px solid var(--clr-gold);
+    color: var(--clr-white);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.woolContainer:hover .rarityText {
+    opacity: 1;
+}
