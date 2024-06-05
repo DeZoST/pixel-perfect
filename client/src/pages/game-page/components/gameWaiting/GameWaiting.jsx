@@ -3,7 +3,7 @@ import Title from "../../../../components/title/Title"
 import WaitingMessage from "../../../../components/waiting-message/WaitingMessage"
 import styles from "./GameWaiting.module.css"
 
-const GameWaiting = () => {
+const GameWaiting = game => {
     return (
         <>
             <header className={`${styles.header} animate__animated animate__fadeInRight`}>
@@ -15,7 +15,7 @@ const GameWaiting = () => {
                 className={`${styles.title} animate__animated animate__fadeInDownBig`}
             />
             <div className={`${styles.divider}`}></div>
-            <WaitingMessage initialMessage="La partie va bientôt commencer..." />
+            <WaitingMessage waitingSentence={game.game.waitingSentence} />
         </>
     )
 }

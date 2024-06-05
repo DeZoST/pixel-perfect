@@ -14,17 +14,6 @@ export async function updateWaitingSentence(req, res) {
     }
 }
 
-export async function getWaitingSentence(req, res) {
-    try {
-        const db = await openDb()
-        const result = await db.get("SELECT WAITING_SENTENCE FROM GAME")
-        return res.json({message: result.WAITING_SENTENCE})
-    } catch (error) {
-        console.error("Error getting waiting sentence:", error)
-        res.status(500).json({error: error.message})
-    }
-}
-
 export async function pause(req, res) {
     try {
         const db = await openDb()

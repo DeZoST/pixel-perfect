@@ -45,6 +45,9 @@ app.use(express.json())
 app.use("/api", isUserMiddleware, httpRoutes)
 app.use("/api/game", isModeratorMiddleware, gameRoutes, emitGameUpdatedMiddleware)
 app.use(authRoutes)
+io.engine.on("connection_error", err => {
+    console.log(err.message)
+})
 io.on("connection", async socket => {
     const token = await authenticateWS(socket)
     if (!token) {

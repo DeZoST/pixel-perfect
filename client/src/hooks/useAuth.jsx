@@ -23,7 +23,7 @@ export const AuthProvider = ({children}) => {
         let decoded = jwtDecode(data.jwt)
         console.log(decoded)
         if (decoded.role == "moderator") {
-            return navigate("/upload")
+            return navigate("/panel")
         }
         return navigate("/game")
     }
