@@ -19,8 +19,8 @@ export async function createOrUpdateVote(req, res) {
             "REPLACE INTO VOTE (WOOL, TEAM_ID, PLAYER_ID, IS_JURY) VALUES (?, ?, ?, ?)",
             req.body.wool,
             req.body.teamId,
-            req.body.playerId,
-            req.role === "moderator",
+            req.user.id,
+            req.user.role === "moderator",
         )
 
         const votes = await db.get(

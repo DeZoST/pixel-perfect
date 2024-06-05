@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken"
 import fs from "fs"
 import path from "path"
 import {decodeAndVerifyToken} from "../utils.js"
+import {openDb} from "../db/db.js"
 export async function authenticateUser(req) {
     const {uhs, xblToken} = await getXboxLiveToken(req.body.token)
     const xblXTSToken = await getXboxLiveXSTS(uhs, xblToken)
@@ -9,7 +10,18 @@ export async function authenticateUser(req) {
     const mojangProfile = await getMojangProfile(mojangToken)
 
     const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
-    const token = jwt.sign({id: mojangProfile.id, name: mojangProfile.name, role: "user"}, privateKey, {
+    const db = await openDb()
+
+    let player = await db.get("SELECT * FROM PLAYER WHERE name = ?", mojangProfile.name)
+
+    const params = {name: mojangProfile.name, role: "user", team: player.TEAM_ID}
+    if (!player) {
+        await db.run("INSERT INTO PLAYER (name) VALUES (?)", mojangProfile.name)
+        player = await db.get("SELECT * FROM PLAYER WHERE name = ?", mojangProfile.name)
+        params.team = 0
+    }
+    params.id = player.ID
+    const token = jwt.sign(params, privateKey, {
         algorithm: "RS256",
     })
 
@@ -21,7 +33,7 @@ export function authenticateModerator(req, res) {
         return res.status(401).json({error: "Le mot de passe est incorrect."})
     }
     const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
-    const token = jwt.sign({id: 1, name: "Modérateur", role: "moderator"}, privateKey, {
+    const token = jwt.sign({id: 0, name: "Modérateur", role: "moderator", team: 0}, privateKey, {
         algorithm: "RS256",
     })
 

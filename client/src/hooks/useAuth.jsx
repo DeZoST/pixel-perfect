@@ -21,7 +21,7 @@ export const AuthProvider = ({children}) => {
 
         setUser(data)
         let decoded = jwtDecode(data.jwt)
-        console.log(decoded)
+
         if (decoded.role == "moderator") {
             return navigate("/panel")
         }
@@ -39,6 +39,7 @@ export const AuthProvider = ({children}) => {
             role: decoded ? decoded.role : null,
             name: decoded ? decoded.name : null,
             id: decoded ? decoded.id : null,
+            team: decoded ? decoded.team : null,
             login,
             logout,
         }

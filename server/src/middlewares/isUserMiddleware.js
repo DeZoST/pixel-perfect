@@ -5,7 +5,7 @@ export async function isUserMiddleware(req, res, next) {
     const bearer = req.headers.authorization ? req.headers.authorization.split(" ")[1] : null
     const token = await decodeAndVerifyToken(bearer)
     if (token && (token.role === "user" || token.role === "moderator")) {
-        req.role = token.role
+        req.user = token
         return next()
     }
     return res.status(403).json({error: "Not authorized."})

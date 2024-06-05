@@ -5,6 +5,7 @@ export async function isModeratorMiddleware(req, res, next) {
     const bearer = req.headers.authorization ? req.headers.authorization.split(" ")[1] : null
     const token = await decodeAndVerifyToken(bearer)
     if (token && token.role === "moderator") {
+        req.user = token
         return next()
     }
     return res.status(403).json({error: "Not authorized."})
