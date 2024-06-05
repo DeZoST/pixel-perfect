@@ -1,10 +1,22 @@
-import {pause, resume, updateWaitingSentence, start, handleResetGame} from "../controllers/gameController.js"
+import {
+    pause,
+    resume,
+    updateWaitingSentence,
+    getWaitingSentence,
+    start,
+    handleResetGame,
+} from "../controllers/gameController.js"
 import express from "express"
 
 const router = express.Router()
 
-router.put("/waitingSentence", async (req, res, next) => {
+router.post("/waitingSentence", async (req, res, next) => {
     await updateWaitingSentence(req, res)
+    next()
+})
+
+router.get("/waitingSentence", async (req, res, next) => {
+    await getWaitingSentence(req, res)
     next()
 })
 

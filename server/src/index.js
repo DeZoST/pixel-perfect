@@ -19,7 +19,15 @@ import {authenticateWS} from "./controllers/authController.js"
 const app = express()
 const port = 3000
 const server = http.createServer(app)
-const io = new Server(server)
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true,
+    },
+})
+
 global.io = io
 
 if (!fs.existsSync("./uploads")) {

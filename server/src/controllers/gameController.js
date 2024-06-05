@@ -9,7 +9,18 @@ export async function updateWaitingSentence(req, res) {
         await db.run("UPDATE GAME SET WAITING_SENTENCE = ?", req.body.sentence)
         return res.json({message: "Waiting sentence updated successfully!"})
     } catch (error) {
-        console.error(error)
+        console.error("Error updating waiting sentence:", error)
+        res.status(500).json({error: error.message})
+    }
+}
+
+export async function getWaitingSentence(req, res) {
+    try {
+        const db = await openDb()
+        const result = await db.get("SELECT WAITING_SENTENCE FROM GAME")
+        return res.json({message: result.WAITING_SENTENCE})
+    } catch (error) {
+        console.error("Error getting waiting sentence:", error)
         res.status(500).json({error: error.message})
     }
 }

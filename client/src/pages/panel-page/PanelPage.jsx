@@ -1,23 +1,43 @@
-import styles from "./PanelPage.module.css"
+import {useState} from "react"
+import axios from "axios"
 import Button from "../../components/button/Button"
 import ButtonDisconnect from "../../components/button-disconnect/ButtonDisconnect"
-import {useState} from "react"
-import {io} from "socket.io-client"
-
-const socket = io("http://localhost:3000")
+import styles from "./PanelPage.module.css"
+import {useAuth} from "../../hooks/useAuth"
 
 const PanelPage = () => {
     const [message, setMessage] = useState("")
+    const {user} = useAuth()
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
         if (!message.trim()) {
             alert("Veuillez entrer une phrase valide.")
             return
         }
-        socket.emit("updateWaitingSentence", {message: message.trim()})
-        setMessage("")
+
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/game/waitingSentence`,
+                {sentence: message.trim()},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.jwt}`,
+                    },
+                },
+            )
+
+            alert(response.data.message)
+            setMessage("")
+        } catch (error) {
+            console.error("Error updating waiting sentence:", error.response || error.message)
+            alert(
+                `Erreur lors de la mise à jour de la phrase d'attente: ${error.response ? error.response.data.message : error.message}`,
+            )
+        }
     }
+
     return (
         <section className={`${styles.panelPage} container`}>
             <section className={`${styles.panelContainer}`}>
@@ -34,7 +54,7 @@ const PanelPage = () => {
                                 value={message}
                                 onChange={e => setMessage(e.target.value)}
                                 className={`${styles.messageInput}`}
-                            ></input>
+                            />
                         </div>
                         <Button type="submit" text="Confirmer" className={`${styles.buttonConfirm}`} />
                     </form>
