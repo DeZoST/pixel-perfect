@@ -3,3 +3,4 @@ node_modules
 RS256.key
 RS256.key.pub
 src/db/database.db
+uploads/*

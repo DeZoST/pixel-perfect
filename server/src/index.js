@@ -31,12 +31,12 @@ await db.migrate({
     migrationsPath: "./src/db/migrations",
 })
 
+app.use("/uploads", express.static("uploads"))
 app.use(cors())
 app.use(express.json())
 app.use("/api", isUserMiddleware, httpRoutes)
 app.use("/api/game", isModeratorMiddleware, gameRoutes, emitGameUpdatedMiddleware)
 app.use(authRoutes)
-
 io.on("connection", async socket => {
     const token = await authenticateWS(socket)
     if (!token) {

@@ -4,6 +4,7 @@ import path from "path"
 
 import {getTeams, createOrUpdateVote} from "../controllers/apiController.js"
 import {isModeratorMiddleware} from "../middlewares/isModeratorMiddleware.js"
+import {openDb} from "../db/db.js"
 const router = express.Router()
 const upload = multer({
     storage: multer.diskStorage({
@@ -11,14 +12,15 @@ const upload = multer({
             cb(null, "./uploads/")
         },
         filename: (req, file, cb) => {
-            cb(null, Date.now() + path.extname(file.originalname)) // Save files with a unique name
+            cb(null, req.query.team + path.extname(file.originalname)) // Save files with a unique name
         },
     }),
 })
 
-router.post("/upload", isModeratorMiddleware, upload.single("video"), (req, res) => {
-    // TODO : modify the HAS_VIDEO of the corresponding team & rename the file with the team name
-    return res.json({message: "Video uploaded successfully!"})
+router.post("/upload", isModeratorMiddleware, upload.single("video"), async (req, res) => {
+    const db = await openDb()
+    await db.run("UPDATE TEAM SET HAS_VIDEO = TRUE WHERE ID = ?", req.body.team)
+    return await res.json({message: "Video uploaded successfully!"})
 })
 
 router.get("/teams", async (req, res) => {

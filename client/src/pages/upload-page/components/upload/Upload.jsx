@@ -17,10 +17,9 @@ const Upload = () => {
     const {user} = useAuth()
 
     const submitForm = team => {
-        const UPLOAD_URL = `${import.meta.env.VITE_SERVER_URL}/api/upload`
+        const UPLOAD_URL = `${import.meta.env.VITE_SERVER_URL}/api/upload?team=${team}`
         const formData = new FormData()
         formData.append("video", file)
-        formData.append("team", team)
         axios
             .post(UPLOAD_URL, formData, {
                 headers: {
