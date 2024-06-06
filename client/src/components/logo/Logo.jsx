@@ -8,7 +8,7 @@ const Logo = ({className}) => {
 }
 
 Logo.propTypes = {
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
 }
 
 export default Logo
