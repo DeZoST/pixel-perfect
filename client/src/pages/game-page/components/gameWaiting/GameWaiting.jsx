@@ -8,14 +8,10 @@ const GameWaiting = game => {
     const {name} = useAuth()
     return (
         <>
-            <header className={`${styles.header} animate__animated animate__fadeInRight`}>
-                <ButtonDisconnect className={`${styles.button} animate__animated animate__fadeInRight`} />
+            <header className={`${styles.header}`}>
+                <ButtonDisconnect className={`${styles.button}`} />
             </header>
-            <Title
-                level={1}
-                title={`${name}, la partie commence bientôt !`}
-                className={`${styles.title} animate__animated animate__fadeInDownBig`}
-            />
+            <Title level={1} title={`${name}, la partie commence bientôt !`} className={`${styles.title}`} />
             <div className={`${styles.divider}`}></div>
             <WaitingMessage waitingSentence={game.game.waitingSentence} />
         </>

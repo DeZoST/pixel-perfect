@@ -1,6 +1,5 @@
 import PropTypes from "prop-types"
 import styles from "./HomePage.module.css"
-import "animate.css"
 import Logo from "../../components/logo/Logo"
 import Button from "../../components/button/Button"
 
@@ -23,10 +22,10 @@ AnimatedText.propTypes = {
 const HomePage = () => {
     return (
         <div className={styles.homePage}>
-            <Logo className={"animate__animated animate__zoomInLeft"} />
+            <Logo />
             <main className={styles.main}>
                 <section className={`${styles.heroBanner} container`}>
-                    <div className={`${styles.heroBannerTitleContainer} animate__animated animate__zoomInDown`}>
+                    <div className={`${styles.heroBannerTitleContainer}`}>
                         <img
                             src="/images/top-left-shape.png"
                             alt="top left shape for title"
@@ -52,11 +51,7 @@ const HomePage = () => {
                             Qui aura la plus grosse ? <AnimatedText text="(performance)" />
                         </h2>
                     </div>
-                    <Button
-                        text="Commencer"
-                        className={`${styles.button} animate__animated animate__zoomInUp`}
-                        to="/login"
-                    />
+                    <Button text="Commencer" className={`${styles.button}`} to="/login" />
                 </section>
             </main>
         </div>
