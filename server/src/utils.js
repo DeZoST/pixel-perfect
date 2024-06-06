@@ -18,6 +18,8 @@ export function snakeToCamel(obj) {
 export async function sendGameUpdates() {
     const db = await openDb()
     const game = await db.get("SELECT * FROM GAME")
+    const team = await db.get("SELECT * FROM TEAM WHERE ID = ?", game.CURRENT_TEAM_ID)
+    game.CURRENT_TEAM_NAME = team.NAME
     global.io.emit("game.listen", snakeToCamel(game))
 }
 
