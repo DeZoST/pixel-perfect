@@ -20,7 +20,7 @@ const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onRes
             setTeams(teamData)
         }
         fetchTeams()
-    }, [])
+    }, [user.jwt])
 
     const handleSubmit = e => {
         e.preventDefault()
