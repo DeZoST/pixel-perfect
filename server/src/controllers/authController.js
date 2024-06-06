@@ -13,14 +13,15 @@ export async function authenticateUser(req) {
     const db = await openDb()
 
     let player = await db.get("SELECT * FROM PLAYER WHERE name = ?", mojangProfile.name)
-
-    const params = {name: mojangProfile.name, role: "user", team: player.TEAM_ID}
+    const params = {name: mojangProfile.name, role: "user"}
     if (!player) {
-        await db.run("INSERT INTO PLAYER (name) VALUES (?)", mojangProfile.name)
+        console.log("New player detected, adding to database.")
+        await db.run("INSERT INTO PLAYER (NAME, TEAM_ID) VALUES (?, ?)", mojangProfile.name, 0)
         player = await db.get("SELECT * FROM PLAYER WHERE name = ?", mojangProfile.name)
-        params.team = 0
+        console.log("Player added to database.", player)
     }
     params.id = player.ID
+    params.team = player.TEAM_ID
     const token = jwt.sign(params, privateKey, {
         algorithm: "RS256",
     })

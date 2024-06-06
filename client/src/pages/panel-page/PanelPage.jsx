@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom"
 const PanelPage = () => {
     const [newWaitingSentence, setNewWaitingSentence] = useState("")
     const [game, setGame] = useState({})
+    const [players, setPlayers] = useState([])
     const {user} = useAuth()
     const navigate = useNavigate()
 
@@ -18,6 +19,11 @@ const PanelPage = () => {
             extraHeaders: {
                 Authorization: `Bearer ${user.jwt}`,
             },
+        })
+
+        socket.on("players.listen", data => {
+            console.log(data)
+            setPlayers(data)
         })
 
         socket.on("game.listen", data => {
@@ -48,8 +54,6 @@ const PanelPage = () => {
                     },
                 },
             )
-
-            alert(response.data.message)
             setNewWaitingSentence("")
         } catch (error) {
             console.error("Error updating waiting sentence:", error.response || error.message)
@@ -78,7 +82,6 @@ const PanelPage = () => {
                     },
                 },
             )
-            alert(response.data.message)
         } catch (error) {
             console.error(`Error ${game.isPaused ? "resuming" : "pausing"} game:`, error.response || error.message)
             alert(
@@ -101,7 +104,6 @@ const PanelPage = () => {
                     },
                 },
             )
-            alert(response.data.message)
         } catch (error) {
             console.error("Error starting game:", error.response || error.message)
             alert(`Erreur lors du démarrage du jeu: ${error.response ? error.response.data.message : error.message}`)
@@ -134,7 +136,9 @@ const PanelPage = () => {
                     <div className={`${styles.gameControlContainer}`}>
                         <Button
                             text="Commencer une nouvelle partie"
-                            onClick={startGame}
+                            onClick={() =>
+                                confirm("Voulez vous vraiment commencer une nouvelle partie ?") && startGame()
+                            }
                             className={`${styles.buttonStart}`}
                             disabled={game.isStarted} // Disable if game is already started
                         />
@@ -158,18 +162,25 @@ const PanelPage = () => {
                 </div>
             </section>
             <section className={`${styles.lobbyContainer}`}>
-                <h1 className={`${styles.lobbyTitle}`}>Classement du lobby</h1>
+                <h1 className={`${styles.lobbyTitle}`}>Joueurs du lobby</h1>
                 <div>
                     <table>
                         <thead>
                             <tr>
-                                <th scope="col">Numéro</th>
-                                <th scope="col">Equipes</th>
-                                <th scope="col">Classement</th>
-                                <th scope="col">Points</th>
-                                <th scope="col">Laines</th>
+                                <th scope="col">Pseudo minecraft</th>
+                                <th scope="col">Equipe</th>
+                                <th scope="col">Connecté</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            {players.map(player => (
+                                <tr key={player.id}>
+                                    <td>{player.name}</td>
+                                    <td>{player.teamName}</td>
+                                    <td>{player.isOnline ? "✔️" : "❌"}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
             </section>

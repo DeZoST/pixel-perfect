@@ -28,6 +28,10 @@ const UserGamePage = () => {
             console.log(data)
             setVotes(data)
         })
+
+        return () => {
+            socket.disconnect()
+        }
     }, [])
 
     return (

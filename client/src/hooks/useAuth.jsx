@@ -11,7 +11,7 @@ export const AuthProvider = ({children}) => {
 
     const logout = () => {
         setUser(null)
-        navigate("/login", {replace: true})
+        navigate("/login")
     }
 
     const login = async data => {

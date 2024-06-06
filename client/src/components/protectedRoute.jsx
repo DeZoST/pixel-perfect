@@ -5,7 +5,7 @@ import {useAuth} from "../hooks/useAuth"
 export const ProtectedRoute = ({children, moderatorOnly}) => {
     const {user, role} = useAuth()
     if (!user || (moderatorOnly && role !== "moderator")) {
-        return <Navigate to="/login" />
+        return (window.location.href = "/login")
     }
     return children
 }

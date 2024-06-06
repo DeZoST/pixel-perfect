@@ -41,12 +41,15 @@ const LoginPage = () => {
         setContent(isModerator ? <ModeratorContent /> : <UserContent />)
     }, [isModerator])
 
-    if (user) {
-        if (role === "moderator") {
-            return navigate("/upload")
+    useEffect(() => {
+        if (user) {
+            if (role === "moderator") {
+                return navigate("/upload")
+            }
+            navigate("/game")
         }
-        navigate("/game")
-    }
+    }, [user, role])
+
     return (
         <section className={`${styles.loginPage}`}>
             <div className={`${styles.Container} container`}>
