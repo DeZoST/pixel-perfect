@@ -13,7 +13,7 @@ const UploadSuccess = () => {
                 </header>
                 <div className={styles.successContainer}>
                     <p className={styles.successText}>Vidéo importée avec succés</p>
-                    <Button text="Voir la liste des vidéos" className={styles.button} />
+                    <Button text="Faire un autre upload" className={styles.button} />
                 </div>
             </form>
         </div>

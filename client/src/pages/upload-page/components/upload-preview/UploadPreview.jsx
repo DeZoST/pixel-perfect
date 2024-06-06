@@ -70,7 +70,7 @@ const UploadPreview = ({videoPreview, fileName, fileSize, onUploadSuccess, onRes
                             <option value="">Sélectionner une équipe</option>
                             {teams.map(team => (
                                 <option key={team.ID} value={team.ID}>
-                                    {team.NAME}
+                                    {team.NAME} {team.HAS_VIDEO ? "✔️" : "❌"}
                                 </option>
                             ))}
                         </select>
