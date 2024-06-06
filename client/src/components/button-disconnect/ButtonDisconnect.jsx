@@ -9,15 +9,13 @@ const ButtonDisconnect = ({className}) => {
     const navigate = useNavigate()
     return (
         <>
-            {role === "moderator" &&
-                !window.location.pathname.includes("/panel") &&
-                !window.location.pathname.includes("/game") && (
-                    <Button
-                        text="Panel"
-                        onClick={() => navigate("/panel")}
-                        className={`${className} ${styles.buttonDisconnect}`}
-                    />
-                )}
+            {role === "moderator" && !window.location.pathname.includes("/panel") && (
+                <Button
+                    text="Panel"
+                    onClick={() => navigate("/panel")}
+                    className={`${styles.buttonPanel} ${styles.buttonDisconnect}`}
+                />
+            )}
             <Button text="Déconnexion" onClick={() => logout()} className={`${className} ${styles.buttonDisconnect}`} />
         </>
     )
