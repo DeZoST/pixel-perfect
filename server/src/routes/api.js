@@ -19,8 +19,8 @@ const upload = multer({
 
 router.post("/upload", isModeratorMiddleware, upload.single("video"), async (req, res) => {
     const db = await openDb()
-    await db.run("UPDATE TEAM SET HAS_VIDEO = TRUE WHERE ID = ?", req.body.team)
-    return await res.json({message: "Video uploaded successfully!"})
+    await db.run("UPDATE TEAM SET HAS_VIDEO = TRUE WHERE ID = ?", req.query.team)
+    return res.json({message: "Video uploaded successfully!"})
 })
 
 router.get("/teams", async (req, res) => {
