@@ -4,4 +4,6 @@
     color: var(--clr-white);
     font-family: "Bebas Neue", sans-serif;
     letter-spacing: 3px;
+    max-width: 60ch;
+    word-wrap: break-word;
 }
