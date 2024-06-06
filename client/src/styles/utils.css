@@ -148,12 +148,9 @@ a {
     color: inherit;
 }
 
-html {
-    background: url("/images/bg-image.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
+body {
+    background: radial-gradient(circle, rgba(39, 25, 4, 0.53) -80%, rgba(53, 43, 6, 1) 13%, rgba(8, 9, 10, 1) 99%);
+    overflow-x: hidden;
 }
 
 .container {
