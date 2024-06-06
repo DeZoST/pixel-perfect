@@ -8,3 +8,7 @@
 .buttonDisconnect::before {
     border-radius: 10px;
 }
+
+.buttonPanel {
+    margin-right: 2rem;
+}
