@@ -58,33 +58,36 @@
 .buttonsContainer {
     display: flex;
     justify-content: space-between;
+    gap: 3rem;
     margin-top: 3.5rem;
 }
 
 .gameControlContainer {
     display: flex;
-    gap: 4rem;
+    width: fit-content;
+    gap: 2rem;
 }
 
 .buttonPause {
     font-size: var(--fs-2xl);
     color: var(--clr-white);
-    padding: 0 5rem;
     border-radius: 10px;
+    padding: 0 2rem;
 }
 
 .buttonStart {
     font-size: var(--fs-2xl);
     color: var(--clr-white);
-    padding: 0 5rem;
     border-radius: 10px;
+    padding: 0 1rem;
 }
 
 .buttonCaster {
     font-size: var(--fs-4xl);
     color: var(--clr-white);
-    padding: 1.5rem 5rem;
     border-radius: 10px;
+    flex: 2;
+    padding: 1.5rem 1rem;
 }
 
 .lobbyContainer {
