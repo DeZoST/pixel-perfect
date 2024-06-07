@@ -10,7 +10,6 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "animate.css": "^4.1.1",
         "axios": "^1.7.2",
         "jwt-decode": "^4.0.0",
         "prop-types": "^15.8.1",

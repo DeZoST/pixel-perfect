@@ -74,60 +74,25 @@ const GamePlaying = ({game, votes}) => {
                         </video>
                     </div>
                     <div className={`${styles.woolsContainer}`}>
-                        <Wool
-                            number={1}
-                            rarity="Superpoop"
-                            color="red"
-                            onClick={() => handleVote(1)}
-                            selected={selectedVote === 1}
-                            dimmed={selectedVote !== null && selectedVote !== 1}
-                            votes={role === "moderator" ? votes.red : undefined}
-                        />
-                        <Wool
-                            number={2}
-                            rarity="Poop"
-                            color="pink"
-                            onClick={() => handleVote(2)}
-                            selected={selectedVote === 2}
-                            dimmed={selectedVote !== null && selectedVote !== 2}
-                            votes={role === "moderator" ? votes.pink : undefined}
-                        />
-                        <Wool
-                            number={3}
-                            rarity="Good"
-                            color="lime"
-                            onClick={() => handleVote(3)}
-                            selected={selectedVote === 3}
-                            dimmed={selectedVote !== null && selectedVote !== 3}
-                            votes={role === "moderator" ? votes.lime : undefined}
-                        />
-                        <Wool
-                            number={4}
-                            rarity="Very good"
-                            color="green"
-                            onClick={() => handleVote(4)}
-                            selected={selectedVote === 4}
-                            dimmed={selectedVote !== null && selectedVote !== 4}
-                            votes={role === "moderator" ? votes.green : undefined}
-                        />
-                        <Wool
-                            number={5}
-                            rarity="Epic"
-                            color="blue"
-                            onClick={() => handleVote(5)}
-                            selected={selectedVote === 5}
-                            dimmed={selectedVote !== null && selectedVote !== 5}
-                            votes={role === "moderator" ? votes.blue : undefined}
-                        />
-                        <Wool
-                            number={6}
-                            rarity="Legendary"
-                            color="yellow"
-                            onClick={() => handleVote(6)}
-                            selected={selectedVote === 6}
-                            dimmed={selectedVote !== null && selectedVote !== 6}
-                            votes={role === "moderator" ? votes.yellow : undefined}
-                        />
+                        {[
+                            {number: 1, rarity: "Superpoop", color: "red"},
+                            {number: 2, rarity: "Poop", color: "pink"},
+                            {number: 3, rarity: "Good", color: "lime"},
+                            {number: 4, rarity: "Very good", color: "green"},
+                            {number: 5, rarity: "Epic", color: "blue"},
+                            {number: 6, rarity: "Legendary", color: "yellow"},
+                        ].map(wool => (
+                            <Wool
+                                key={wool.number}
+                                number={wool.number}
+                                rarity={wool.rarity}
+                                color={wool.color}
+                                onClick={() => handleVote(wool.number)}
+                                selected={selectedVote === wool.number}
+                                dimmed={selectedVote !== null && selectedVote !== wool.number}
+                                votes={role === "moderator" ? votes[wool.color] : null}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -138,9 +103,6 @@ const GamePlaying = ({game, votes}) => {
 GamePlaying.propTypes = {
     game: PropTypes.object,
     votes: PropTypes.object,
-    players: PropTypes.array,
-    currentTeam: PropTypes.object,
-    isPaused: PropTypes.bool,
 }
 
 export default GamePlaying

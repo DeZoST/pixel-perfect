@@ -6,8 +6,6 @@ import styles from "./PanelPage.module.css"
 import {useAuth} from "../../hooks/useAuth"
 import {io} from "socket.io-client"
 import {useNavigate} from "react-router-dom"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faXmark, faCheck} from "@fortawesome/free-solid-svg-icons"
 
 const PanelPage = () => {
     const [newWaitingSentence, setNewWaitingSentence] = useState("")
@@ -46,7 +44,7 @@ const PanelPage = () => {
         }
 
         try {
-            const response = await axios.post(
+            await axios.post(
                 `${import.meta.env.VITE_SERVER_URL}/api/game/waitingSentence`,
                 {sentence: newWaitingSentence.trim()},
                 {
@@ -74,7 +72,7 @@ const PanelPage = () => {
         }
 
         try {
-            const response = await axios.post(
+            await axios.post(
                 `${import.meta.env.VITE_SERVER_URL}/api/game/${game.isPaused ? "resume" : "pause"}`,
                 {},
                 {
@@ -96,7 +94,7 @@ const PanelPage = () => {
 
     const startGame = async () => {
         try {
-            const response = await axios.post(
+            await axios.post(
                 `${import.meta.env.VITE_SERVER_URL}/api/game/start`,
                 {},
                 {
@@ -109,6 +107,26 @@ const PanelPage = () => {
         } catch (error) {
             console.error("Error starting game:", error.response || error.message)
             alert(`Erreur lors du démarrage du jeu: ${error.response ? error.response.data.message : error.message}`)
+        }
+    }
+
+    const resetGame = async () => {
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}/api/game/reset`,
+                {},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.jwt}`,
+                    },
+                },
+            )
+        } catch (error) {
+            console.error("Error resetting game:", error.response || error.message)
+            alert(
+                `Erreur lors de la réinitialisation du jeu: ${error.response ? error.response.data.message : error.message}`,
+            )
         }
     }
 
@@ -159,13 +177,19 @@ const PanelPage = () => {
                 </div>
                 <div className={`${styles.buttonsContainer}`}>
                     <Button
-                        text="Commencer une nouvelle partie"
-                        onClick={() => confirm("Voulez vous vraiment commencer une nouvelle partie ?") && startGame()}
+                        text={game.isStarted || game.isFinished ? "Reset la partie" : "Commencer une nouvelle partie"}
+                        onClick={() =>
+                            game.isStarted || game.isFinished
+                                ? confirm(
+                                      "Voulez vous vraiment reset la partie, attention toutes les données seront effacées ?",
+                                  ) && resetGame()
+                                : confirm("Voulez vous vraiment commencer une nouvelle partie ?") && startGame()
+                        }
                         className={`${styles.buttonStart}`}
                         disabled={game.isStarted}
                     />
                     <Button
-                        text={game.isPaused ? "Relancer la partie" : "Mettre le jeu en pause"}
+                        text={game.isPaused ? "Reprendre la partie" : "Mettre le jeu en pause"}
                         onClick={togglePause}
                         className={`${styles.buttonPause}`}
                         disabled={!game.isStarted}
@@ -200,13 +224,7 @@ const PanelPage = () => {
                                     <tr key={player.id}>
                                         <td>{player.name}</td>
                                         <td>{group.teamName}</td>
-                                        <td>
-                                            {player.isOnline ? (
-                                                <FontAwesomeIcon icon={faCheck} style={{color: "green"}} />
-                                            ) : (
-                                                <FontAwesomeIcon icon={faXmark} style={{color: "red"}} />
-                                            )}
-                                        </td>
+                                        <td>{player.isOnline ? "✔️" : "❌"}</td>
                                     </tr>
                                 )),
                             )}

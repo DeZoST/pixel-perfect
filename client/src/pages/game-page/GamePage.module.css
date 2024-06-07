@@ -1,8 +1,5 @@
 .userGamePage {
-    background: url("/images/bg-image.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    flex-direction: column;
     min-height: 100vh;
     font-size: var(--fs-base);
     display: flex;
@@ -13,4 +10,12 @@
 .Container {
     display: flex;
     flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 3rem;
+    margin-right: 5rem;
 }

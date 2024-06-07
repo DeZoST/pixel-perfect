@@ -32,7 +32,7 @@ const Wool = ({number, rarity, color, onClick, selected, dimmed, votes}) => {
                 alt="wool for voting"
                 style={dropShadowStyle}
             />
-            {votes !== undefined && <p className={`${styles.votesCount}`}>{votes}</p>}
+            {votes !== null && <p className={`${styles.votesCount}`}>{votes || 0}</p>}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import {openDb} from "../db/db.js"
-import {sendGameUpdates} from "../utils.js"
+import {sendGameUpdates, sendVotesUpdates} from "../utils.js"
 global.gameTicker = null
 global.gameTime = 10
 
@@ -124,4 +124,5 @@ async function selectTeamToVote() {
         return clearInterval(global.gameTicker)
     }
     await db.run("UPDATE GAME SET CURRENT_TEAM_ID = ?", teams[0].ID)
+    await sendVotesUpdates()
 }

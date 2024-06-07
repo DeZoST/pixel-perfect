@@ -7,6 +7,7 @@ import Logo from "../../components/logo/Logo"
 import {io} from "socket.io-client"
 import {useAuth} from "../../hooks/useAuth"
 import PropTypes from "prop-types"
+import ButtonDisconnect from "../../components/button-disconnect/ButtonDisconnect"
 
 const UserGamePage = () => {
     const [game, setGame] = useState({})
@@ -44,8 +45,11 @@ const UserGamePage = () => {
     return (
         <section className={`${styles.userGamePage}`}>
             <Logo className={`${styles.logo}`} />
+            <header className={`${styles.header}`}>
+                <ButtonDisconnect className={`${styles.button}`} />
+            </header>
             <div className={`${styles.Container} container`}>
-                {game.isFinished && game.isStarted ? (
+                {game.isFinished ? (
                     <GameScoreboard game={game} />
                 ) : game.isStarted ? (
                     <GamePlaying

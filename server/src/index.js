@@ -11,7 +11,7 @@ import {openDb} from "./db/db.js"
 import {emitGameUpdatedMiddleware} from "./middlewares/gameUpdateEvent.js"
 import http from "http"
 import {Server} from "socket.io"
-import {sendPlayersOnlineUpdate, snakeToCamel} from "./utils.js"
+import {getCurrentTeamVotes, sendPlayersOnlineUpdates, snakeToCamel} from "./utils.js"
 import {isModeratorMiddleware} from "./middlewares/isModeratorMiddleware.js"
 import {isUserMiddleware} from "./middlewares/isUserMiddleware.js"
 import {authenticateWS} from "./controllers/authController.js"
@@ -54,17 +54,18 @@ io.on("connection", async socket => {
         return socket.disconnect()
     }
     if (token.role === "moderator") {
-        socket.join("moderators")
+        await socket.join("moderators")
     }
     const db = await openDb()
 
     await db.run("UPDATE PLAYER SET IS_ONLINE = TRUE WHERE ID = ?", token.id)
     socket.on("disconnect", async () => {
         await db.run("UPDATE PLAYER SET IS_ONLINE = FALSE WHERE ID = ?", token.id)
-        await sendPlayersOnlineUpdate()
+        await sendPlayersOnlineUpdates()
     })
 
-    await sendPlayersOnlineUpdate()
+    await sendPlayersOnlineUpdates()
+    socket.emit("vote.listen", await getCurrentTeamVotes())
 
     const game = await db.get("SELECT * FROM GAME")
     socket.emit("game.listen", snakeToCamel(game))
