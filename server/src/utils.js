@@ -24,7 +24,7 @@ export async function sendGameUpdates() {
     const game = await db.get(
         "SELECT GAME.*, COALESCE(TEAM.NAME, '') as CURRENT_TEAM_NAME FROM GAME LEFT JOIN TEAM ON GAME.CURRENT_TEAM_ID = TEAM.ID",
     )
-    global.io.to("moderators").emit("game.listen", snakeToCamel(game))
+    global.io.emit("game.listen", snakeToCamel(game))
 }
 
 export async function sendPlayersOnlineUpdate() {
@@ -32,13 +32,13 @@ export async function sendPlayersOnlineUpdate() {
     const players = await db.all(
         "SELECT PLAYER.*, COALESCE(TEAM.NAME, 'Sans Équipe') as TEAM_NAME FROM PLAYER LEFT JOIN TEAM ON PLAYER.TEAM_ID = TEAM.ID",
     )
-    global.io.emit("players.listen", snakeToCamel(players))
+    global.io.to("moderators").emit("players.listen", snakeToCamel(players))
 }
 
 export async function decodeAndVerifyToken(token) {
     const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
     try {
-        const decodedToken = await jwt.verify(token, privateKey, {algorithms: ["RS256"]})
+        const decodedToken = jwt.verify(token, privateKey, {algorithms: ["RS256"]})
         return decodedToken
     } catch (error) {
         console.error(error.message)

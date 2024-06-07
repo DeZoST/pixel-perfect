@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import axios from "axios"
 import {useAuth} from "../../../../hooks/useAuth"
 
-const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
+const GamePlaying = ({game, votes}) => {
     const videoRef = useRef(null)
     const [selectedVote, setSelectedVote] = useState(null)
     const {user, role} = useAuth()
@@ -16,10 +16,10 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
             videoRef.current.load()
         }
         setSelectedVote(null) // Reset selected vote when the team changes
-    }, [currentTeam])
+    }, [game.currentTeamId])
 
     const handleVote = async vote => {
-        if (isPaused) {
+        if (game.isPaused) {
             alert("La partie est en pause, vous ne pouvez pas voter.")
             return
         }
@@ -27,12 +27,11 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
         setSelectedVote(vote)
 
         try {
-            const response = await axios.put(
+            await axios.put(
                 `${import.meta.env.VITE_SERVER_URL}/api/game/vote`,
                 {
                     wool: vote,
-                    teamId: currentTeam.ID,
-                    playerId: user.id,
+                    teamId: game.currentTeamId,
                 },
                 {
                     headers: {
@@ -53,7 +52,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
         <section className={`${styles.gamePlayingPage}`}>
             <section className={`${styles.gamePlayingContainer} container`}>
                 <header className={`${styles.headerContainer}`}>
-                    {isPaused ? (
+                    {game.isPaused ? (
                         <Title level={1} title="La partie est en pause" className={styles.title} />
                     ) : (
                         <Title level={1} title="Votez la qualité de la vidéo" className={styles.title} />
@@ -66,7 +65,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                 </header>
                 <div className={`${styles.mainGameContainer}`}>
                     <div className={`${styles.videoContainer}`}>
-                        <h2 className={`${styles.teamName}`}>Team {currentTeam.NAME}</h2>
+                        <h2 className={`${styles.teamName}`}>Team {game.currentTeamName}</h2>
                         <video className={`${styles.video}`} ref={videoRef} autoPlay controls>
                             <source
                                 src={`${import.meta.env.VITE_SERVER_URL}/uploads/${game.currentTeamId}.mp4`}
@@ -96,7 +95,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                         <Wool
                             number={3}
                             rarity="Good"
-                            color="lightgreen"
+                            color="lime"
                             onClick={() => handleVote(3)}
                             selected={selectedVote === 3}
                             dimmed={selectedVote !== null && selectedVote !== 3}
@@ -105,7 +104,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                         <Wool
                             number={4}
                             rarity="Very good"
-                            color="darkgreen"
+                            color="green"
                             onClick={() => handleVote(4)}
                             selected={selectedVote === 4}
                             dimmed={selectedVote !== null && selectedVote !== 4}

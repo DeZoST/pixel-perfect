@@ -8,8 +8,8 @@ const Wool = ({number, rarity, color, onClick, selected, dimmed, votes}) => {
     const woolColors = {
         red: "#5C1513", // Superpoop
         pink: "#8B4D60", // Poop
-        lightgreen: "#3C660D", // Good
-        darkgreen: "#303E10", // Very good
+        lime: "#3C660D", // Good
+        green: "#303E10", // Very good
         blue: "#2C2D7C", // Epic
         yellow: "#DAAC1F", // Legendary
     }

@@ -36,7 +36,7 @@ const PanelPage = () => {
         return () => {
             socket.disconnect()
         }
-    }, [user.jwt])
+    }, [])
 
     const handleSubmit = async e => {
         e.preventDefault()
