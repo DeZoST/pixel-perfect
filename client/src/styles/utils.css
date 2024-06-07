@@ -148,6 +148,13 @@ a {
     color: inherit;
 }
 
+input {
+    border: none;
+    outline: none;
+    background: none;
+    color: inherit;
+}
+
 body {
     background: radial-gradient(circle, rgba(39, 25, 4, 0.53) -80%, rgba(53, 43, 6, 1) 13%, rgba(8, 9, 10, 1) 99%);
     overflow-x: hidden;
