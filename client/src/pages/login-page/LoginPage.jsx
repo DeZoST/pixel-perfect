@@ -48,7 +48,7 @@ const LoginPage = () => {
             }
             navigate("/game")
         }
-    }, [user, role])
+    }, [user, role, navigate])
 
     return (
         <section className={`${styles.loginPage}`}>
