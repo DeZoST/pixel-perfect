@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import styles from "./Wool.module.css"
 import {useState} from "react"
 
-const Wool = ({number, rarity, color, onClick, selected, dimmed}) => {
+const Wool = ({number, rarity, color, onClick, selected, dimmed, votes}) => {
     const [isHovered, setIsHovered] = useState(false)
 
     const woolColors = {
@@ -32,6 +32,7 @@ const Wool = ({number, rarity, color, onClick, selected, dimmed}) => {
                 alt="wool for voting"
                 style={dropShadowStyle}
             />
+            {votes !== undefined && <p className={`${styles.votesCount}`}>{votes}</p>}
         </div>
     )
 }
@@ -40,9 +41,10 @@ Wool.propTypes = {
     color: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     rarity: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    selected: PropTypes.bool.isRequired,
-    dimmed: PropTypes.bool.isRequired,
+    onClick: PropTypes.func,
+    selected: PropTypes.bool,
+    dimmed: PropTypes.bool,
+    votes: PropTypes.number,
 }
 
 export default Wool

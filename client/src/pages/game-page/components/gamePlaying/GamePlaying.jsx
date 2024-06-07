@@ -9,7 +9,7 @@ import {useAuth} from "../../../../hooks/useAuth"
 const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
     const videoRef = useRef(null)
     const [selectedVote, setSelectedVote] = useState(null)
-    const {user} = useAuth()
+    const {user, role} = useAuth()
 
     useEffect(() => {
         if (videoRef.current) {
@@ -82,6 +82,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                             onClick={() => handleVote(1)}
                             selected={selectedVote === 1}
                             dimmed={selectedVote !== null && selectedVote !== 1}
+                            votes={role === "moderator" ? votes.red : undefined}
                         />
                         <Wool
                             number={2}
@@ -90,6 +91,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                             onClick={() => handleVote(2)}
                             selected={selectedVote === 2}
                             dimmed={selectedVote !== null && selectedVote !== 2}
+                            votes={role === "moderator" ? votes.pink : undefined}
                         />
                         <Wool
                             number={3}
@@ -98,6 +100,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                             onClick={() => handleVote(3)}
                             selected={selectedVote === 3}
                             dimmed={selectedVote !== null && selectedVote !== 3}
+                            votes={role === "moderator" ? votes.lime : undefined}
                         />
                         <Wool
                             number={4}
@@ -106,6 +109,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                             onClick={() => handleVote(4)}
                             selected={selectedVote === 4}
                             dimmed={selectedVote !== null && selectedVote !== 4}
+                            votes={role === "moderator" ? votes.green : undefined}
                         />
                         <Wool
                             number={5}
@@ -114,6 +118,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                             onClick={() => handleVote(5)}
                             selected={selectedVote === 5}
                             dimmed={selectedVote !== null && selectedVote !== 5}
+                            votes={role === "moderator" ? votes.blue : undefined}
                         />
                         <Wool
                             number={6}
@@ -122,6 +127,7 @@ const GamePlaying = ({game, votes, players, currentTeam, isPaused}) => {
                             onClick={() => handleVote(6)}
                             selected={selectedVote === 6}
                             dimmed={selectedVote !== null && selectedVote !== 6}
+                            votes={role === "moderator" ? votes.yellow : undefined}
                         />
                     </div>
                 </div>

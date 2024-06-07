@@ -37,3 +37,11 @@
 .dimmed {
     opacity: 0.5;
 }
+
+.votesCount {
+    position: absolute;
+    left: 46%;
+    bottom: -40px;
+    color: var(--clr-white);
+    font-size: var(--fs-base);
+}

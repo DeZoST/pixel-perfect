@@ -1,3 +1,7 @@
+.gamePlayingPage {
+    padding: 0 0 2rem;
+}
+
 .gamePlayingContainer {
     display: flex;
     flex-direction: column;
