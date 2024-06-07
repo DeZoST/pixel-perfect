@@ -1,5 +1,6 @@
 .woolContainer {
     position: relative;
+    cursor: pointer;
 }
 
 .rarityText {
@@ -15,10 +16,24 @@
     border: 2px solid var(--clr-gold);
     color: var(--clr-white);
     border-radius: 10px;
-    opacity: 0;
+    display: none;
     transition: opacity 0.2s;
 }
 
 .woolContainer:hover .rarityText {
-    opacity: 1;
+    display: block;
+}
+
+.wool {
+    transition:
+        opacity 0.2s ease,
+        filter 0.2s ease;
+}
+
+.selected {
+    filter: drop-shadow(0px 0px 20px #c19a1b);
+}
+
+.dimmed {
+    opacity: 0.5;
 }
