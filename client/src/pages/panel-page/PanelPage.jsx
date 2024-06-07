@@ -110,6 +110,29 @@ const PanelPage = () => {
         }
     }
 
+    const groupPlayersByTeam = players => {
+        return players.reduce((groups, player) => {
+            if (!groups[player.teamName]) {
+                groups[player.teamName] = []
+            }
+            groups[player.teamName].push(player)
+            return groups
+        }, {})
+    }
+
+    const sortPlayersByStatus = players => {
+        return players.sort((a, b) => (a.isOnline === b.isOnline ? 0 : a.isOnline ? -1 : 1))
+    }
+
+    const groupedAndSortedPlayers = () => {
+        const groupedPlayers = groupPlayersByTeam(players)
+        const sortedGroups = Object.keys(groupedPlayers).map(team => ({
+            teamName: team,
+            players: sortPlayersByStatus(groupedPlayers[team]),
+        }))
+        return sortedGroups
+    }
+
     return (
         <section className={`${styles.panelPage} container`}>
             <section className={`${styles.panelContainer}`}>
@@ -137,13 +160,13 @@ const PanelPage = () => {
                         text="Commencer une nouvelle partie"
                         onClick={() => confirm("Voulez vous vraiment commencer une nouvelle partie ?") && startGame()}
                         className={`${styles.buttonStart}`}
-                        disabled={game.isStarted} // Disable if game is already started
+                        disabled={game.isStarted}
                     />
                     <Button
                         text={game.isPaused ? "Relancer la partie" : "Mettre le jeu en pause"}
                         onClick={togglePause}
                         className={`${styles.buttonPause}`}
-                        disabled={!game.isStarted} // Disable if game is not started
+                        disabled={!game.isStarted}
                     />
                     <Button
                         text="Upload une vidéo"
@@ -170,13 +193,15 @@ const PanelPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {players.map(player => (
-                                <tr key={player.id}>
-                                    <td>{player.name}</td>
-                                    <td>{player.teamName}</td>
-                                    <td>{player.isOnline ? "✔️" : "❌"}</td>
-                                </tr>
-                            ))}
+                            {groupedAndSortedPlayers().map(group =>
+                                group.players.map(player => (
+                                    <tr key={player.id}>
+                                        <td>{player.name}</td>
+                                        <td>{group.teamName}</td>
+                                        <td>{player.isOnline ? "✔️" : "❌"}</td>
+                                    </tr>
+                                )),
+                            )}
                         </tbody>
                     </table>
                 </div>
