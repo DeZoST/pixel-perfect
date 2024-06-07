@@ -6,6 +6,8 @@ import styles from "./PanelPage.module.css"
 import {useAuth} from "../../hooks/useAuth"
 import {io} from "socket.io-client"
 import {useNavigate} from "react-router-dom"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faXmark, faCheck} from "@fortawesome/free-solid-svg-icons"
 
 const PanelPage = () => {
     const [newWaitingSentence, setNewWaitingSentence] = useState("")
@@ -198,7 +200,13 @@ const PanelPage = () => {
                                     <tr key={player.id}>
                                         <td>{player.name}</td>
                                         <td>{group.teamName}</td>
-                                        <td>{player.isOnline ? "✔️" : "❌"}</td>
+                                        <td>
+                                            {player.isOnline ? (
+                                                <FontAwesomeIcon icon={faCheck} style={{color: "green"}} />
+                                            ) : (
+                                                <FontAwesomeIcon icon={faXmark} style={{color: "red"}} />
+                                            )}
+                                        </td>
                                     </tr>
                                 )),
                             )}
