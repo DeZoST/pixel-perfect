@@ -133,27 +133,24 @@ const PanelPage = () => {
                     </form>
                 </div>
                 <div className={`${styles.buttonsContainer}`}>
-                    <div className={`${styles.gameControlContainer}`}>
-                        <Button
-                            text="Commencer une nouvelle partie"
-                            onClick={() =>
-                                confirm("Voulez vous vraiment commencer une nouvelle partie ?") && startGame()
-                            }
-                            className={`${styles.buttonStart}`}
-                            disabled={game.isStarted} // Disable if game is already started
-                        />
-                        <Button
-                            text={game.isPaused ? "Relancer la partie" : "Mettre le jeu en pause"}
-                            onClick={togglePause}
-                            className={`${styles.buttonPause}`}
-                            disabled={!game.isStarted} // Disable if game is not started
-                        />
-                        <Button
-                            text="Upload une vidéo"
-                            onClick={() => navigate("/upload")}
-                            className={`${styles.buttonPause}`}
-                        />
-                    </div>
+                    <Button
+                        text="Commencer une nouvelle partie"
+                        onClick={() => confirm("Voulez vous vraiment commencer une nouvelle partie ?") && startGame()}
+                        className={`${styles.buttonStart}`}
+                        disabled={game.isStarted} // Disable if game is already started
+                    />
+                    <Button
+                        text={game.isPaused ? "Relancer la partie" : "Mettre le jeu en pause"}
+                        onClick={togglePause}
+                        className={`${styles.buttonPause}`}
+                        disabled={!game.isStarted} // Disable if game is not started
+                    />
+                    <Button
+                        text="Upload une vidéo"
+                        onClick={() => navigate("/upload")}
+                        className={`${styles.buttonPause}`}
+                    />
+
                     <Button
                         text="Mode Casteur"
                         onClick={() => navigate("/game")}
