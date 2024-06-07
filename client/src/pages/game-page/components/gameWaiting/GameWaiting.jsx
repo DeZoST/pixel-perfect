@@ -6,6 +6,7 @@ import styles from "./GameWaiting.module.css"
 
 const GameWaiting = game => {
     const {name} = useAuth()
+    const defaultWaitingSentence = "La partie va bientôt commencer. Veuillez patienter..."
     return (
         <>
             <header className={`${styles.header}`}>
@@ -13,7 +14,7 @@ const GameWaiting = game => {
             </header>
             <Title level={1} title={`${name}, la partie commence bientôt !`} className={`${styles.title}`} />
             <div className={`${styles.divider}`}></div>
-            <WaitingMessage waitingSentence={game.game.waitingSentence} />
+            <WaitingMessage waitingSentence={game.game.waitingSentence || defaultWaitingSentence} />
         </>
     )
 }
