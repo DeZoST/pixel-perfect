@@ -24,22 +24,18 @@ const UserGamePage = () => {
         })
 
         socket.on("game.listen", data => {
-            console.log(data)
             setGame(data)
         })
 
         socket.on("vote.listen", data => {
-            console.log(data)
             setVotes(data)
         })
 
         socket.on("leaderboard.listen", data => {
-            console.log(data)
             setLeaderboard(data)
         })
 
         socket.on("players.listen", data => {
-            console.log(data)
             setPlayers(data)
         })
 

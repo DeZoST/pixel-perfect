@@ -22,12 +22,10 @@ const PanelPage = () => {
         })
 
         socket.on("players.listen", data => {
-            console.log(data)
             setPlayers(data)
         })
 
         socket.on("game.listen", data => {
-            console.log(data)
             setGame(data)
         })
 
@@ -56,7 +54,6 @@ const PanelPage = () => {
             )
             setNewWaitingSentence("")
         } catch (error) {
-            console.error("Error updating waiting sentence:", error.response || error.message)
             alert(
                 `Erreur lors de la mise à jour de la phrase d'attente: ${
                     error.response ? error.response.data.message : error.message
@@ -83,7 +80,6 @@ const PanelPage = () => {
                 },
             )
         } catch (error) {
-            console.error(`Error ${game.isPaused ? "resuming" : "pausing"} game:`, error.response || error.message)
             alert(
                 `Erreur lors de ${game.isPaused ? "la reprise" : "la mise en pause"} du jeu: ${
                     error.response ? error.response.data.message : error.message
@@ -105,7 +101,6 @@ const PanelPage = () => {
                 },
             )
         } catch (error) {
-            console.error("Error starting game:", error.response || error.message)
             alert(`Erreur lors du démarrage du jeu: ${error.response ? error.response.data.message : error.message}`)
         }
     }
@@ -123,7 +118,6 @@ const PanelPage = () => {
                 },
             )
         } catch (error) {
-            console.error("Error resetting game:", error.response || error.message)
             alert(
                 `Erreur lors de la réinitialisation du jeu: ${error.response ? error.response.data.message : error.message}`,
             )

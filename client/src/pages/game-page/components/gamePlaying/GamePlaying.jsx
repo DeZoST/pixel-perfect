@@ -41,7 +41,6 @@ const GamePlaying = ({game, votes}) => {
                 },
             )
         } catch (error) {
-            console.error("Error submitting vote:", error.response || error.message)
             alert(
                 `Erreur lors de la soumission du vote: ${error.response ? error.response.data.message : error.message}`,
             )

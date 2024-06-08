@@ -37,7 +37,6 @@ router.put("/game/vote", async (req, res) => {
 
 router.post("/switch-team", async (req, res) => {
     try {
-        console.log(req.query)
         const db = await openDb()
         const game = await db.get("SELECT * FROM GAME")
         if (game.IS_STARTED && req.query.bypass !== "true") {

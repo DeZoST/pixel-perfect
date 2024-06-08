@@ -22,7 +22,6 @@ const ModeratorContent = ({className}) => {
         try {
             mutateAuthModerator(code, {
                 onSuccess: resp => {
-                    console.log(resp)
                     login(resp)
                 },
                 onError: error => {
