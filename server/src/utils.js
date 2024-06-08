@@ -58,8 +58,8 @@ export async function getLeaderboard() {
     const db = await openDb()
     const leaderboard = await db.all(
         "SELECT " +
-            "T.ID," +
-            "T.NAME," +
+            "T.ID AS TEAM_ID," +
+            "T.NAME AS TEAM_NAME," +
             "COALESCE(SUM(CASE WHEN V.WOOL = 1 THEN 1 ELSE 0 END), 0) AS red," +
             "COALESCE(SUM(CASE WHEN V.WOOL = 2 THEN 1 ELSE 0 END), 0) AS pink," +
             "COALESCE(SUM(CASE WHEN V.WOOL = 3 THEN 1 ELSE 0 END), 0) AS lime," +
