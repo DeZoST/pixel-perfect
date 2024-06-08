@@ -12,6 +12,8 @@ export async function authenticateUser(req) {
     const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
     const db = await openDb()
 
+    if (!mojangProfile.name) throw new Error("Ce compte microsoft n'est pas associé à un compte mojang.")
+
     let player = await db.get("SELECT * FROM PLAYER WHERE name = ?", mojangProfile.name)
     const params = {name: mojangProfile.name, role: "user"}
     if (!player) {

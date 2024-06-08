@@ -1,16 +1,23 @@
 import {useMutation} from "react-query"
 
 export function useAuthMutation() {
-    const mutation = useMutation(accessToken =>
-        fetch("http://localhost:3000/auth", {
+    const mutation = useMutation(async accessToken => {
+        const response = await fetch("http://localhost:3000/auth", {
             // TODO : add to .env
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({token: accessToken}),
-        }).then(res => res.json()),
-    )
+        })
+        const data = await response.json()
+
+        if (!data.jwt) {
+            throw new Error(data.error || "Une erreur est survenue.")
+        }
+
+        return data
+    })
 
     return mutation
 }

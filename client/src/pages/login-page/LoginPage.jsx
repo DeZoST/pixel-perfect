@@ -32,6 +32,10 @@ const LoginPage = () => {
                     setSearchParams({})
                     login(resp)
                 },
+                onError: resp => {
+                    setSearchParams({})
+                    alert(resp)
+                },
                 onSettled: () => setIsLoading(false),
             })
         }
