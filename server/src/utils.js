@@ -54,6 +54,36 @@ export async function sendVotesUpdates() {
     global.io.to("moderators").emit("vote.listen", await getCurrentTeamVotes())
 }
 
+export async function getLeaderboard() {
+    const db = await openDb()
+    const leaderboard = await db.all(
+        "SELECT " +
+            "T.ID," +
+            "T.NAME," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 1 THEN 1 ELSE 0 END), 0) AS red," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 2 THEN 1 ELSE 0 END), 0) AS pink," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 3 THEN 1 ELSE 0 END), 0) AS lime," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 4 THEN 1 ELSE 0 END), 0) AS green," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 5 THEN 1 ELSE 0 END), 0) AS blue," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 6 THEN 1 ELSE 0 END), 0) AS yellow," +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 1 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 1 +" +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 2 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 2 +" +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 3 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 3 +" +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 4 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 4 +" +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 5 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 5 +" +
+            "COALESCE(SUM(CASE WHEN V.WOOL = 6 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 6 AS points " +
+            "FROM VOTE V " +
+            "JOIN TEAM T ON V.TEAM_ID = T.ID " +
+            "GROUP BY T.ID, T.NAME " +
+            "ORDER BY points DESC;",
+    )
+    return snakeToCamel(leaderboard)
+}
+
+export async function sendLeaderboardUpdates() {
+    global.io.emit("leaderboard.listen", await getLeaderboard())
+}
+
 export async function decodeAndVerifyToken(token) {
     const privateKey = fs.readFileSync(path.resolve(process.cwd(), "./RS256.key"))
     try {

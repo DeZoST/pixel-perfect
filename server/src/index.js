@@ -11,7 +11,7 @@ import {openDb} from "./db/db.js"
 import {emitGameUpdatedMiddleware} from "./middlewares/gameUpdateEvent.js"
 import http from "http"
 import {Server} from "socket.io"
-import {getCurrentTeamVotes, sendPlayersOnlineUpdates, snakeToCamel} from "./utils.js"
+import {getCurrentTeamVotes, getLeaderboard, sendPlayersOnlineUpdates, snakeToCamel} from "./utils.js"
 import {isModeratorMiddleware} from "./middlewares/isModeratorMiddleware.js"
 import {isUserMiddleware} from "./middlewares/isUserMiddleware.js"
 import {authenticateWS} from "./controllers/authController.js"
@@ -66,6 +66,7 @@ io.on("connection", async socket => {
 
     await sendPlayersOnlineUpdates()
     socket.emit("vote.listen", await getCurrentTeamVotes())
+    socket.emit("leaderboard.listen", await getLeaderboard())
 
     const game = await db.get("SELECT * FROM GAME")
     socket.emit("game.listen", snakeToCamel(game))
