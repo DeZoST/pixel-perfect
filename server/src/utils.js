@@ -30,7 +30,7 @@ export async function sendGameUpdates() {
 export async function sendPlayersOnlineUpdates() {
     const db = await openDb()
     const players = await db.all(
-        "SELECT PLAYER.*, COALESCE(TEAM.NAME, 'Sans Équipe') as TEAM_NAME FROM PLAYER LEFT JOIN TEAM ON PLAYER.TEAM_ID = TEAM.ID",
+        "SELECT PLAYER.*, COALESCE(TEAM.NAME, 'Sans Équipe') as TEAM_NAME FROM PLAYER LEFT JOIN TEAM ON PLAYER.TEAM_ID = TEAM.ID ORDER BY TEAM.ID",
     )
     global.io.to("moderators").emit("players.listen", snakeToCamel(players))
 }
