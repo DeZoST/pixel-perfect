@@ -56,10 +56,11 @@ const UserGamePage = () => {
     return (
         <section className={`${styles.userGamePage}`}>
             <Logo className={`${styles.logo}`} />
-            <header className={`${styles.header}`}>
-                <ButtonDisconnect className={`${styles.button}`} />
-            </header>
+
             <div className={`${styles.Container} container`}>
+                <header className={`${styles.header}`}>
+                    <ButtonDisconnect className={`${styles.button}`} />
+                </header>
                 {game.isFinished ? (
                     <GameScoreboard game={game} leaderboard={leaderboard} />
                 ) : game.isStarted ? (
