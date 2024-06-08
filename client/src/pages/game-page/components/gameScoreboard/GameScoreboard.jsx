@@ -7,7 +7,7 @@ const GameScoreboard = (game, leaderboard) => {
 
 GameScoreboard.propTypes = {
     game: PropTypes.object,
-    leaderboard: PropTypes.object,
+    leaderboard: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default GameScoreboard
