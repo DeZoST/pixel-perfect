@@ -33,7 +33,7 @@
 
 .teamName {
     color: var(--clr-white);
-    font-size: var(--fs-7xl);
+    font-size: var(--fs-6xl);
     font-family: "Bebas Neue", sans-serif;
     letter-spacing: 3px;
 }
