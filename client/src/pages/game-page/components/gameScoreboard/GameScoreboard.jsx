@@ -1,7 +1,13 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-const GameScoreboard = () => {
+const GameScoreboard = (game, leaderboard) => {
     return <div>GameScoreboard</div>
+}
+
+GameScoreboard.propTypes = {
+    game: PropTypes.object,
+    leaderboard: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default GameScoreboard

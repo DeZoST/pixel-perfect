@@ -1,5 +1,5 @@
 import {openDb} from "../db/db.js"
-import {sendVotesUpdates} from "../utils.js"
+import {sendLeaderboardUpdates, sendVotesUpdates} from "../utils.js"
 
 export async function getTeams(req, res) {
     try {
@@ -24,6 +24,7 @@ export async function createOrUpdateVote(req, res) {
             req.user.role === "moderator",
         )
         await sendVotesUpdates()
+        await sendLeaderboardUpdates()
         return res.json({message: "Vote updated successfully!"})
     } catch (error) {
         console.error(error)

@@ -13,6 +13,7 @@ const UserGamePage = () => {
     const [game, setGame] = useState({})
     const [votes, setVotes] = useState({})
     const [players, setPlayers] = useState([])
+    const [leaderboard, setLeaderboard] = useState([])
     const {user} = useAuth()
 
     useEffect(() => {
@@ -30,6 +31,11 @@ const UserGamePage = () => {
         socket.on("vote.listen", data => {
             console.log(data)
             setVotes(data)
+        })
+
+        socket.on("leaderboard.listen", data => {
+            console.log(data)
+            setLeaderboard(data)
         })
 
         socket.on("players.listen", data => {
@@ -51,7 +57,7 @@ const UserGamePage = () => {
                     <ButtonDisconnect className={`${styles.button}`} />
                 </header>
                 {game.isFinished ? (
-                    <GameScoreboard game={game} />
+                    <GameScoreboard game={game} leaderboard={leaderboard} />
                 ) : game.isStarted ? (
                     <GamePlaying
                         game={game}
