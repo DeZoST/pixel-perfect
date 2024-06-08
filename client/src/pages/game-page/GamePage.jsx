@@ -48,6 +48,11 @@ const UserGamePage = () => {
         }
     }, [])
 
+    // prevent flickering while waiting for socket to connect
+    if (!game.id) {
+        return null
+    }
+
     return (
         <section className={`${styles.userGamePage}`}>
             <Logo className={`${styles.logo}`} />

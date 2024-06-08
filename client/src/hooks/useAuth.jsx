@@ -25,6 +25,10 @@ export const AuthProvider = ({children}) => {
         if (decoded.role == "moderator") {
             return navigate("/panel")
         }
+        console.log(decoded.team)
+        if (decoded.team === 0) {
+            return navigate("/switch-team")
+        }
         return navigate("/game")
     }
 
