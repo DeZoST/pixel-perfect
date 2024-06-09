@@ -1,0 +1,111 @@
+.scoreBoardPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    color: var(--clr-white);
+    padding: 0 0 2rem;
+    margin-top: 6rem;
+}
+
+.scoreBoardContainer {
+    display: flex;
+    background-color: var(--clr-gold-10);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-height: 40%;
+    gap: 4rem;
+    margin-inline: auto;
+}
+
+.title {
+    font-size: var(--fs-7xl);
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.divider {
+    border: 2px solid var(--clr-white);
+    position: absolute;
+    height: 100%;
+    right: -35px;
+    top: 0;
+}
+
+.topTeamsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    flex: 3;
+}
+
+.topTeamCard {
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.topTeamCard:nth-of-type(1) {
+    background-color: var(--clr-gold-20);
+}
+
+.topTeamCard:nth-of-type(2) {
+    background-color: var(--clr-gold-10);
+}
+
+.topTeamCard:nth-of-type(3) {
+    background-color: var(--clr-gold-5);
+}
+
+.rank,
+.teamName {
+    font-size: var(--fs-5xl);
+    font-weight: 500;
+}
+
+.points {
+    font-size: var(--fs-3xl);
+}
+
+.woolsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.wool {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.otherTeamsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 39.5rem;
+}
+
+.otherTeamCard {
+    border-radius: 10px;
+    background-color: var(--clr-gold-5);
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem;
+}
+
+.rankOther,
+.teamNameOther,
+.pointsOther {
+    font-size: var(--fs-xl);
+    font-weight: 500;
+}
