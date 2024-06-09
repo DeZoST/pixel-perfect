@@ -3,6 +3,7 @@ import HomePage from "./pages/home-page/HomePage"
 import LoginPage from "./pages/login-page/LoginPage"
 import UploadPage from "./pages/upload-page/UploadPage"
 import GamePage from "./pages/game-page/GamePage"
+import SwitchTeamPage from "./pages/switch-team-page/SwitchTeamPage"
 import {QueryClient, QueryClientProvider} from "react-query"
 import {ProtectedRoute} from "./components/protectedRoute"
 import {AuthProvider} from "./hooks/useAuth"
@@ -12,9 +13,9 @@ import {AnimatePresence, motion} from "framer-motion"
 const queryClient = new QueryClient()
 
 const pageTransition = {
-    hidden: {opacity: 0, x: 100},
-    visible: {opacity: 1, x: 0, transition: {duration: 0.5}},
-    exit: {opacity: 0, x: -100, transition: {duration: 0.5}},
+    hidden: {opacity: 0},
+    visible: {opacity: 1, transition: {duration: 0.5}},
+    exit: {opacity: 0, transition: {duration: 0.5}},
 }
 
 function AnimatedRoutes() {
@@ -72,6 +73,15 @@ function AnimatedRoutes() {
                                 <PanelPage />
                             </motion.div>
                         </ProtectedRoute>
+                    }
+                />
+                <Route
+                    exact
+                    path="/switch-team"
+                    element={
+                        <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                            <SwitchTeamPage />
+                        </motion.div>
                     }
                 />
             </Routes>
