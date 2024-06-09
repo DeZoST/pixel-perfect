@@ -72,8 +72,8 @@ export async function getLeaderboard() {
             "COALESCE(SUM(CASE WHEN V.WOOL = 4 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 4 +" +
             "COALESCE(SUM(CASE WHEN V.WOOL = 5 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 5 +" +
             "COALESCE(SUM(CASE WHEN V.WOOL = 6 THEN CASE WHEN V.IS_JURY = 1 THEN 16 ELSE 1 END ELSE 0 END), 0) * 6 AS points " +
-            "FROM VOTE V " +
-            "JOIN TEAM T ON V.TEAM_ID = T.ID " +
+            "FROM TEAM T " +
+            "LEFT JOIN VOTE V ON V.TEAM_ID = T.ID " +
             "GROUP BY T.ID, T.NAME " +
             "ORDER BY points DESC;",
     )
