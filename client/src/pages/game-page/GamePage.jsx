@@ -17,7 +17,7 @@ const UserGamePage = () => {
     const {user} = useAuth()
 
     useEffect(() => {
-        const socket = io("localhost:3000", {
+        const socket = io(import.meta.env.VITE_SERVER_URL, {
             extraHeaders: {
                 Authorization: `Bearer ${user.jwt}`,
             },

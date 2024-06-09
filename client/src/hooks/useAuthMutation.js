@@ -2,8 +2,7 @@ import {useMutation} from "react-query"
 
 export function useAuthMutation() {
     const mutation = useMutation(async accessToken => {
-        const response = await fetch("http://localhost:3000/auth", {
-            // TODO : add to .env
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + "/auth", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -24,7 +23,7 @@ export function useAuthMutation() {
 
 export function useModeratorAuthMutation() {
     const mutation = useMutation(async code => {
-        const response = await fetch("http://localhost:3000/auth", {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL + "/auth", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -22,7 +22,7 @@ const LoginPage = () => {
     const handleToggle = isOn => {
         setIsModerator(isOn)
     }
-    // TODO : Add a text somewhere on the page to display the error message : searchParams.get("error")
+
     useEffect(() => {
         const accessToken = searchParams.get("access_token")
         if (accessToken) {

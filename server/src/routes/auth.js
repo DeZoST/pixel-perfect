@@ -5,9 +5,9 @@ const router = express.Router()
 
 router.get("/callback", async (req, res) => {
     try {
-        return res.redirect("http://localhost:5173/login?access_token=" + (await getMicrosoftToken(req))) // TODO : add to .env
+        return res.redirect(process.env.CLIENT_URL + "/login?access_token=" + (await getMicrosoftToken(req)))
     } catch (error) {
-        return res.redirect(`http://localhost:5173/login?error=${error.message}`) // TODO : add to .env
+        return res.redirect(`${process.env.CLIENT_URL}/login?error=${error.message}`)
     }
 })
 
