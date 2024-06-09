@@ -39,8 +39,8 @@ const Upload = () => {
             const fileType = file.type
             const fileSize = file.size
 
-            if (!fileType.startsWith("video/")) {
-                setErrorMessage("Le fichier sélectionné n'est pas une vidéo.")
+            if (!fileType.startsWith("video/mp4")) {
+                setErrorMessage("Le fichier sélectionné n'est pas une vidéo ou n'est pas au format mp4.")
                 setVideoPreview(null)
                 setFileName("")
                 setFileSize(0)
@@ -108,7 +108,7 @@ const Upload = () => {
                                         type="file"
                                         ref={fileInputRef}
                                         style={{display: "none"}}
-                                        accept="video/*"
+                                        accept="video/mp4"
                                         onChange={handleFileChange}
                                     />
                                 </div>

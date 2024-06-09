@@ -16,7 +16,7 @@ const upload = multer({
             cb(null, "./uploads/")
         },
         filename: (req, file, cb) => {
-            cb(null, req.query.team + path.extname(file.originalname)) // Save files with a unique name
+            cb(null, req.query.team + path.extname(file.originalname).toLowerCase()) // Save files with a unique name
         },
     }),
 })
