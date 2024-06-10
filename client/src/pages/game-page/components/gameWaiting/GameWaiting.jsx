@@ -10,7 +10,6 @@ const GameWaiting = game => {
     return (
         <>
             <Title level={1} title={`${name}, la partie commence bientôt !`} className={`${styles.title}`} />
-            <div className={`${styles.divider}`}></div>
             <WaitingMessage waitingSentence={game.game.waitingSentence || defaultWaitingSentence} />
         </>
     )

@@ -2,7 +2,7 @@ import styles from "./Switch.module.css"
 import {useState} from "react"
 import PropTypes from "prop-types"
 
-const Switch = ({className, onToggle}) => {
+const Switch = ({onToggle}) => {
     const [isOn, setIsOn] = useState(false)
 
     const toggleSwitch = () => {
@@ -11,7 +11,7 @@ const Switch = ({className, onToggle}) => {
     }
 
     return (
-        <div className={`${styles.switchContainer} ${className}`}>
+        <div className={styles.switchContainer}>
             <span>Mode Modérateur</span>
             <div className={`${styles.switch} ${isOn ? styles.on : styles.off}`} onClick={toggleSwitch}>
                 <div className={`${styles.switchToggle}`}></div>
@@ -21,7 +21,6 @@ const Switch = ({className, onToggle}) => {
 }
 
 Switch.propTypes = {
-    className: PropTypes.string,
     onToggle: PropTypes.func.isRequired,
 }
 

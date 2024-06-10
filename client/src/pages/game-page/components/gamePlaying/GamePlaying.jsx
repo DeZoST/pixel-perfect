@@ -50,20 +50,20 @@ const GamePlaying = ({game, votes}) => {
     return (
         <section className={`${styles.gamePlayingPage}`}>
             <section className={`${styles.gamePlayingContainer} container`}>
-                <header className={`${styles.headerContainer}`}>
+                <header>
                     {game.isPaused ? (
                         <Title level={1} title="La partie est en pause" className={styles.title} />
                     ) : (
                         <Title level={1} title="Votez la qualité de la vidéo" className={styles.title} />
                     )}
 
-                    <div className={`${styles.timerContainer}`}>
-                        <div className={`${styles.timerLine}`}></div>
+                    <div>
+                        <div></div>
                         <h2 className={`${styles.timerText}`}>{game.secondsRemaining} secondes restantes</h2>
                     </div>
                 </header>
                 <div className={`${styles.mainGameContainer}`}>
-                    <div className={`${styles.videoContainer}`}>
+                    <div>
                         <h2 className={`${styles.teamName}`}>Team {game.currentTeamName}</h2>
                         <video className={`${styles.video}`} ref={videoRef} autoPlay controls>
                             <source

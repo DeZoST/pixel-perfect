@@ -89,32 +89,32 @@ const Upload = () => {
                                 Importer une vidéo
                             </h3>
                             <hr />
-                            <section className={styles.uploadSection}>
-                                <div className={styles.uploadIconContainer}>
-                                    <img src="/images/upload-icon.png" alt="upload icon" />
-                                </div>
-                                <div className={styles.uploadDescriptionContainer}>
-                                    <p className={styles.uploadDescription}>
-                                        Glisser-déposer un fichier vidéo à télécharger
-                                    </p>
-                                    <p className={`${styles.uploadDescription} ${styles.or}`}>ou</p>
-                                    <Button
-                                        type="button"
-                                        text="Sélectionner un fichier"
-                                        className={styles.uploadButton}
-                                        inputRef={fileInputRef}
-                                    />
-                                    <input
-                                        type="file"
-                                        ref={fileInputRef}
-                                        style={{display: "none"}}
-                                        accept="video/mp4"
-                                        onChange={handleFileChange}
-                                    />
-                                </div>
-                                {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-                            </section>
                         </header>
+                        <section className={styles.uploadSection}>
+                            <div className={styles.uploadIconContainer}>
+                                <img src="/images/upload-icon.png" alt="upload icon" />
+                            </div>
+                            <div className={styles.uploadDescriptionContainer}>
+                                <p className={styles.uploadDescription}>
+                                    Glisser-déposer un fichier vidéo à télécharger
+                                </p>
+                                <p className={`${styles.uploadDescription} ${styles.or}`}>ou</p>
+                                <Button
+                                    type="button"
+                                    text="Sélectionner un fichier"
+                                    className={styles.uploadButton}
+                                    inputRef={fileInputRef}
+                                />
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    style={{display: "none"}}
+                                    accept="video/mp4"
+                                    onChange={handleFileChange}
+                                />
+                            </div>
+                            {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+                        </section>
                     </form>
                 </div>
             )}

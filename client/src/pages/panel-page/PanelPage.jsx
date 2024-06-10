@@ -150,7 +150,7 @@ const PanelPage = () => {
     return (
         <section className={`${styles.panelPage} container`}>
             <section className={`${styles.panelContainer}`}>
-                <div className={`${styles.panel}`}>
+                <div>
                     <header className={`${styles.header}`}>
                         <ButtonDisconnect className={`${styles.buttonDisconnect}`} />
                     </header>

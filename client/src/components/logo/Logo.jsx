@@ -1,10 +1,8 @@
 import PropTypes from "prop-types"
 import styles from "./Logo.module.css"
 
-const Logo = ({className}) => {
-    return (
-        <img src="/images/logo-cite.png" alt="Logo de la Cité des Pixels" className={`${className} ${styles.logo}`} />
-    )
+const Logo = () => {
+    return <img src="/images/logo-cite.png" alt="Logo de la Cité des Pixels" className={styles.logo} />
 }
 
 Logo.propTypes = {

@@ -28,7 +28,7 @@ const GameScoreboard = ({leaderboard}) => {
 
     return (
         <section className={styles.scoreBoardPage}>
-            <div className={`${styles.Container} container`}>
+            <div className="container">
                 <h1 className={styles.title}>Classement</h1>
                 <div className={styles.scoreBoardContainer}>
                     <ol className={styles.topTeamsContainer}>

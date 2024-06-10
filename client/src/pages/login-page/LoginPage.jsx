@@ -62,7 +62,7 @@ const LoginPage = () => {
                 ) : (
                     <>
                         <header className={`${styles.header}`}>
-                            <Switch onToggle={handleToggle} className={`${styles.switch}`} />
+                            <Switch onToggle={handleToggle} />
                         </header>
                         <Title level={1} title="Connexion Pixel Perfect" className={`${styles.title}`} />
                         <div className={`${styles.contentContainer}`}>{content}</div>

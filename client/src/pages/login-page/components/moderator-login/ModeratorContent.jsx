@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import {useAuth} from "../../../../hooks/useAuth"
 import {useModeratorAuthMutation} from "../../../../hooks/useAuthMutation"
 
-const ModeratorContent = ({className}) => {
+const ModeratorContent = () => {
     const [code, setCode] = useState("")
     const [_, setError] = useState("")
     const {login} = useAuth()
@@ -34,7 +34,7 @@ const ModeratorContent = ({className}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className={`${styles.moderatorContent} ${className}`}>
+        <form onSubmit={handleSubmit} className={styles.moderatorContent}>
             <div className={styles.codeContainer}>
                 <h2 className={styles.codeTitle}>Code du Modérateur :</h2>
                 <input

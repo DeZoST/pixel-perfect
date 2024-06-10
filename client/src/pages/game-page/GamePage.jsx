@@ -51,7 +51,7 @@ const UserGamePage = () => {
 
     return (
         <section className={`${styles.userGamePage}`}>
-            <Logo className={`${styles.logo}`} />
+            <Logo />
 
             <div className={`${styles.Container} container`}>
                 <header className={`${styles.header}`}>

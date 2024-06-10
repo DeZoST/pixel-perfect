@@ -4,7 +4,7 @@ import styles from "./ButtonDisconnect.module.css"
 import {useAuth} from "../../hooks/useAuth"
 import {useNavigate} from "react-router-dom"
 
-const ButtonDisconnect = ({className}) => {
+const ButtonDisconnect = () => {
     const {logout, role} = useAuth()
     const navigate = useNavigate()
     return (
@@ -16,7 +16,7 @@ const ButtonDisconnect = ({className}) => {
                     className={`${styles.buttonPanel} ${styles.buttonDisconnect}`}
                 />
             )}
-            <Button text="Déconnexion" onClick={() => logout()} className={`${className} ${styles.buttonDisconnect}`} />
+            <Button text="Déconnexion" onClick={() => logout()} className={styles.buttonDisconnect} />
         </>
     )
 }
