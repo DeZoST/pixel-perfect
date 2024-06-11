@@ -36,7 +36,7 @@ const GameScoreboard = ({leaderboard}) => {
                             <li key={team.teamId} className={styles.topTeamCard}>
                                 <span className={styles.rank}>{index + 1}.</span>
                                 <div className={styles.teamInfo}>
-                                    <h2 className={styles.teamName}>{team.teamName}</h2>
+                                    <h2 className={styles.teamName}>Equipe {team.teamName}</h2>
                                     <p className={styles.points}>{team.points} points</p>
                                     <div className={styles.woolsContainer}>{generateWoolImages(team)}</div>
                                 </div>
