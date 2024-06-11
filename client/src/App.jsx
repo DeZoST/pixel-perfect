@@ -1,14 +1,17 @@
 import {BrowserRouter as Router, Route, Routes, useLocation} from "react-router-dom"
-import HomePage from "./pages/home-page/HomePage"
-import LoginPage from "./pages/login-page/LoginPage"
-import UploadPage from "./pages/upload-page/UploadPage"
-import GamePage from "./pages/game-page/GamePage"
-import SwitchTeamPage from "./pages/switch-team-page/SwitchTeamPage"
 import {QueryClient, QueryClientProvider} from "react-query"
 import {ProtectedRoute} from "./components/protectedRoute"
 import {AuthProvider} from "./hooks/useAuth"
-import PanelPage from "./pages/panel-page/PanelPage"
 import {AnimatePresence, motion} from "framer-motion"
+import {Suspense, lazy} from "react"
+import Loader from "./components/loader/Loader" // Assuming your loader is here
+
+const HomePage = lazy(() => import("./pages/home-page/HomePage"))
+const LoginPage = lazy(() => import("./pages/login-page/LoginPage"))
+const UploadPage = lazy(() => import("./pages/upload-page/UploadPage"))
+const GamePage = lazy(() => import("./pages/game-page/GamePage"))
+const SwitchTeamPage = lazy(() => import("./pages/switch-team-page/SwitchTeamPage"))
+const PanelPage = lazy(() => import("./pages/panel-page/PanelPage"))
 
 const queryClient = new QueryClient()
 
@@ -28,18 +31,22 @@ function AnimatedRoutes() {
                     exact
                     path="/"
                     element={
-                        <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
-                            <HomePage />
-                        </motion.div>
+                        <Suspense fallback={<Loader />}>
+                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                <HomePage />
+                            </motion.div>
+                        </Suspense>
                     }
                 />
                 <Route
                     exact
                     path="/login"
                     element={
-                        <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
-                            <LoginPage />
-                        </motion.div>
+                        <Suspense fallback={<Loader />}>
+                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                <LoginPage />
+                            </motion.div>
+                        </Suspense>
                     }
                 />
                 <Route
@@ -47,9 +54,11 @@ function AnimatedRoutes() {
                     path="/upload"
                     element={
                         <ProtectedRoute>
-                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
-                                <UploadPage />
-                            </motion.div>
+                            <Suspense fallback={<Loader />}>
+                                <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                    <UploadPage />
+                                </motion.div>
+                            </Suspense>
                         </ProtectedRoute>
                     }
                 />
@@ -58,9 +67,11 @@ function AnimatedRoutes() {
                     path="/game"
                     element={
                         <ProtectedRoute>
-                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
-                                <GamePage />
-                            </motion.div>
+                            <Suspense fallback={<Loader />}>
+                                <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                    <GamePage />
+                                </motion.div>
+                            </Suspense>
                         </ProtectedRoute>
                     }
                 />
@@ -69,9 +80,11 @@ function AnimatedRoutes() {
                     path="/panel"
                     element={
                         <ProtectedRoute moderatorOnly>
-                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
-                                <PanelPage />
-                            </motion.div>
+                            <Suspense fallback={<Loader />}>
+                                <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                    <PanelPage />
+                                </motion.div>
+                            </Suspense>
                         </ProtectedRoute>
                     }
                 />
@@ -79,9 +92,11 @@ function AnimatedRoutes() {
                     exact
                     path="/switch-team"
                     element={
-                        <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
-                            <SwitchTeamPage />
-                        </motion.div>
+                        <Suspense fallback={<Loader />}>
+                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                <SwitchTeamPage />
+                            </motion.div>
+                        </Suspense>
                     }
                 />
             </Routes>
