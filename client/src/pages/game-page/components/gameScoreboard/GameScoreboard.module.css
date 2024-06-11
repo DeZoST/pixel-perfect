@@ -13,7 +13,7 @@
     background-color: var(--clr-gold-10);
     padding: 2rem;
     border-radius: 10px;
-    width: 80%;
+    width: 90%;
     max-height: 40%;
     gap: 4rem;
     margin-inline: auto;
@@ -39,9 +39,10 @@
 .topTeamsContainer {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     position: relative;
-    flex: 3;
+    flex: 2;
+    justify-content: space-between;
 }
 
 .topTeamCard {
@@ -50,6 +51,7 @@
     display: flex;
     align-items: flex-start;
     gap: 1rem;
+    height: 100%;
 }
 
 .topTeamCard:nth-of-type(1) {
@@ -71,27 +73,46 @@
 }
 
 .points {
+    font-size: var(--fs-4xl);
+}
+
+.topTeamCard:nth-of-type(2) .teamName,
+.topTeamCard:nth-of-type(2) .rank {
+    font-size: var(--fs-4xl);
+}
+
+.topTeamCard:nth-of-type(2) .points {
+    font-size: var(--fs-2xl);
+}
+
+.topTeamCard:nth-of-type(3) .teamName,
+.topTeamCard:nth-of-type(3) .rank {
     font-size: var(--fs-3xl);
+}
+
+.topTeamCard:nth-of-type(3) .points {
+    font-size: var(--fs-xl);
 }
 
 .woolsContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    margin-top: 1rem;
 }
 
 .wool {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 .otherTeamsList {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     overflow-y: auto;
     flex: 1;
-    max-height: 39.5rem;
+    max-height: 68rem;
 }
 
 .otherTeamCard {
@@ -99,7 +120,7 @@
     background-color: var(--clr-gold-5);
     display: flex;
     gap: 0.5rem;
-    padding: 0.75rem;
+    padding: 0.5rem;
 }
 
 .rankOther,
