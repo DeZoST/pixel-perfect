@@ -52,7 +52,7 @@ const SwitchTeam = () => {
     }, [])
 
     return (
-        <section className={styles.uploadPage}>
+        <section className={styles.switchTeamPage}>
             <div className={`${styles.Container} container`}>
                 <header className={`${styles.header}`}>
                     <ButtonDisconnect className={`${styles.button}`} />
@@ -63,13 +63,12 @@ const SwitchTeam = () => {
                     subtitle="Nous n'avons pas trouvé votre pseudo minecraft dans notre liste de joueurs, veuillez sélectionner votre Équipe"
                     className={styles.title}
                 />
-                <div className={styles.uploadContainer}>
-                    <form className={styles.uploadForm} onSubmit={handleSubmit}>
+                <div className={styles.switchTeamContainer}>
+                    <form className={styles.switchTeamForm} onSubmit={handleSubmit}>
                         <header className={styles.headerForm}>
                             <h3 className={styles.label} htmlFor="fileInput">
-                                Sélectionner votre équipe
+                                Sélectionnez votre équipe
                             </h3>
-                            <hr />
                         </header>
                         <div className={styles.previewContainer}>
                             <div className={styles.teamInfo}>
@@ -88,7 +87,7 @@ const SwitchTeam = () => {
                                     ))}
                                 </select>
                             </div>
-                            <Button type="submit" text="Envoyer" className={styles.uploadButton} />
+                            <Button type="submit" text="Envoyer" className={styles.switchTeamButton} />
                         </div>
                     </form>
                 </div>
