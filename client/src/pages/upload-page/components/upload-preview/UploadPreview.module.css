@@ -39,7 +39,7 @@ hr {
 }
 
 .videoPreview {
-    max-width: 400px;
+    width: 400px;
     max-height: 300px;
     border: 3px solid var(--clr-gold);
 }
