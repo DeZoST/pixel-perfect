@@ -12,6 +12,7 @@
     margin-inline: auto;
     display: flex;
     flex-direction: column;
+    min-width: 90%;
 }
 
 .headerForm {
@@ -51,7 +52,7 @@ hr {
     justify-content: center;
     gap: 2rem;
     align-items: center;
-    padding: 3rem 25rem;
+    padding: 3rem;
 }
 
 .uploadDescriptionContainer {
