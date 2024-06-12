@@ -9,7 +9,7 @@ import {useAuth} from "../../../../hooks/useAuth"
 const GamePlaying = ({game, votes}) => {
     const videoRef = useRef(null)
     const [selectedVote, setSelectedVote] = useState(null)
-    const {user, role} = useAuth()
+    const {user, role, team} = useAuth()
 
     useEffect(() => {
         if (videoRef.current) {
@@ -47,6 +47,8 @@ const GamePlaying = ({game, votes}) => {
         }
     }
 
+    console.log(team, game.currentTeamId)
+
     return (
         <section className={`${styles.gamePlayingPage}`}>
             <section className={`${styles.gamePlayingContainer} container`}>
@@ -73,25 +75,26 @@ const GamePlaying = ({game, votes}) => {
                         </video>
                     </div>
                     <div className={`${styles.woolsContainer}`}>
-                        {[
-                            {number: 1, rarity: "Superpoop", color: "red"},
-                            {number: 2, rarity: "Poop", color: "pink"},
-                            {number: 3, rarity: "Good", color: "lime"},
-                            {number: 4, rarity: "Very good", color: "green"},
-                            {number: 5, rarity: "Epic", color: "blue"},
-                            {number: 6, rarity: "Legendary", color: "yellow"},
-                        ].map(wool => (
-                            <Wool
-                                key={wool.number}
-                                number={wool.number}
-                                rarity={wool.rarity}
-                                color={wool.color}
-                                onClick={() => handleVote(wool.number)}
-                                selected={selectedVote === wool.number}
-                                dimmed={selectedVote !== null && selectedVote !== wool.number}
-                                votes={role === "moderator" ? votes[wool.color] : null}
-                            />
-                        ))}
+                        {team != game.currentTeamId &&
+                            [
+                                {number: 1, rarity: "Superpoop", color: "red"},
+                                {number: 2, rarity: "Poop", color: "pink"},
+                                {number: 3, rarity: "Good", color: "lime"},
+                                {number: 4, rarity: "Very good", color: "green"},
+                                {number: 5, rarity: "Epic", color: "blue"},
+                                {number: 6, rarity: "Legendary", color: "yellow"},
+                            ].map(wool => (
+                                <Wool
+                                    key={wool.number}
+                                    number={wool.number}
+                                    rarity={wool.rarity}
+                                    color={wool.color}
+                                    onClick={() => handleVote(wool.number)}
+                                    selected={selectedVote === wool.number}
+                                    dimmed={selectedVote !== null && selectedVote !== wool.number}
+                                    votes={role === "moderator" ? votes[wool.color] : null}
+                                />
+                            ))}
                     </div>
                 </div>
             </section>
