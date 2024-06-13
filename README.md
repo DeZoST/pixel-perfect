@@ -1,67 +1,33 @@
-# 🎮 La Cité des Pixels - Pixel Perfect Tournament 🏆
+# 🎮 La Cité des Pixels - Pixel Perfect 🏆
 
 ![Cité des Pixels](https://github.com/DeZoST/pixel-perfect/blob/main/client/public/images/logo-cite.png)
 
-## 🌟 Contexte
-**La Cité des Pixels** est le plus grand tournoi Minecraft européen ! Il s’agit d’une LAN regroupant joueurs et influenceurs lors d’une compétition alliant épreuves in-game et IRL pendant 6 jours du **22 juin au 27 juin**.
+## 🌟 Configuration du Projet
 
-Le **24 juin** a lieu notre second événement IRL intitulé **Pixel Perfect**, un format unique inspiré de la chaîne YouTube Dude Perfect. Les joueurs auront **2 heures** pour réaliser un trickshot de leur choix, In-Game, IRL ou alliant les deux. Ils devront ensuite envoyer une vidéo de moins de **30 secondes** (en format vertical ou horizontal) aux membres du staff via un channel Discord.
+1. **Cloner le projet**
+2. **Générer les clés JWT** :
+   Exécutez le script shell `./server/jwt.sh` pour générer les clés privées et publiques.
+3. **Configurer les variables d'environnement** :
+   Créez les fichiers `.env` à partir des fichiers `.env.example` dans les dossiers `client` et `server`.
+4. **Démarrer le projet** :
+   Exécutez la commande `docker compose up -d` à la racine du projet.
 
-## 🎯 Objectif
+## 🚀 Informations Techniques
 
-Le site web à développer aura plusieurs fonctionnalités pour les membres du staff et les joueurs.
+-   **Ports par défaut** :
+    Le serveur fonctionne sur le port **3000** et le client sur le port **5173**. Vous pouvez les modifier dans le fichier `docker-compose.yml`.
+-   **Migrations SQL** :
+    Si vous modifiez les fichiers de migrations SQL, supprimez le fichier `./server/src/db/database.db` et redémarrez le serveur pour appliquer les changements.
+-   **Déploiement urgent** :
+    En cas de modifications urgentes du code, n'oubliez pas de faire un **docker compose down** suivi d'un **docker compose up -d --build** pour que les changements soient pris en compte.
 
-### 👥 Pour les Membres du Staff (Administrateurs)
-Les administrateurs pourront :
-- 🔑 Se connecter en tant qu’admin.
-- ⬆️ Uploader chaque vidéo en la faisant correspondre à une équipe.
-- 📊 Voir un classement en direct des points.
-- 📝 Choisir quel message afficher avant le début de la partie.
-- ▶️ Commencer la partie en appuyant sur un bouton.
-- ⏸️ Mettre la partie en pause.
-- 📺 Passer en mode **Cast**.
+## 📚 Informations pour les Modérateurs
 
-### 🎥 Mode Cast
-Le mode Cast offre les mêmes vues que les joueurs avec des fonctionnalités supplémentaires :
-- 👥 Voir le nombre de personnes votant et le nombre de votes par laine.
-- 📊 Les votes du jury comptabilisent pour 16 votes.
-
-### 🎮 Pour les Joueurs
-Les joueurs devront :
-- 🔑 Se connecter avec leur compte Microsoft au moment propice.
-- ⏳ Attendre le début de la partie.
-- 🎬 Visionner les vidéos une par une.
-- 🗳️ Voter en indiquant une couleur de laine parmi 6 couleurs.
-
-Chaque joueur aura **1 minute** pour visionner chaque vidéo et voter. Tous les joueurs passeront simultanément à la prochaine vidéo jusqu’à la fin du visionnage avec l’affichage du classement final.
-
-## 🚀 Fonctionnalités Principales
-- **🔒 Authentification** : Connexion des utilisateurs via Microsoft pour les joueurs et via un système d’authentification dédié pour les administrateurs.
-- **⬆️ Upload de Vidéos** : Les administrateurs peuvent uploader et attribuer des vidéos aux équipes.
-- **🎬 Visionnage et Vote** : Les joueurs peuvent visionner les vidéos et voter dans un temps imparti.
-- **📊 Classement en Direct** : Affichage en direct du classement des points.
-- **📺 Mode Cast** : Vue spéciale pour les administrateurs avec des statistiques de votes.
-
-## 🛠️ Technologies Utilisées
-- **💻 Frontend** : React, React Router, CSS Modules
-- **🌐 Backend** : Node.js
-
-## ⚙️ Installation et Déploiement
-
-Ce projet est privé et n'est pas destiné à être installé ou déployé par des personnes extérieures à l'équipe de développement de La Cité des Pixels.
-
-### 🛠️ Prérequis
-- 🛠️ Node.js
-- 📦 npm
-
-### 🤝 Contribution
-Ce projet est privé. Les contributions externes ne sont pas acceptées.
-
-### 📜  Licence
-Ce projet est privé et n'est pas sous licence publique.
-
-### 👥 Auteurs
-- [Alexis De Barros](https://github.com/DeZoST)
-- [Baptiste Moureaux](https://github.com/BaptisteMoureaux)
-
-### Fait avec ❤️ par l'équipe de La Cité des Pixels.
+-   **Changer d'équipe** :
+    Les joueurs peuvent changer d'équipe en visitant la page **/switch-team**. Ils y seront automatiquement redirigés s'ils ne font partie d'aucune équipe lors de la première connexion.
+-   **Graphe pour OBS** :
+    La page du graphe pour OBS est accessible à l'adresse **/vote-graph**.
+-   **Statut de connexion** :
+    Un joueur est considéré comme connecté s'il est sur la page **/game**.
+-   **Reset du jeu** :
+    Lors de la réinitialisation du jeu, tous les votes sont **supprimés**.
