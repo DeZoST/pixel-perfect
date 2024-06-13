@@ -5,8 +5,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: black;
-    color: white;
+    color: black;
     padding: 2rem;
 }
 
@@ -47,4 +46,8 @@
     height: 40px;
     margin-right: 0.5rem;
     border-radius: 4px;
+}
+
+body {
+    background: unset;
 }

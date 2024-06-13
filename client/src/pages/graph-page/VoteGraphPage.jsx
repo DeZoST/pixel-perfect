@@ -3,12 +3,10 @@ import {io} from "socket.io-client"
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from "chart.js"
 import {Bar} from "react-chartjs-2"
 import styles from "./VoteGraphPage.module.css"
-import {useAuth} from "../../hooks/useAuth"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const VoteGraphPage = () => {
-    const {user} = useAuth()
     const [voteData, setVoteData] = useState({
         labels: ["Current Team Votes"],
         datasets: [
@@ -57,7 +55,7 @@ const VoteGraphPage = () => {
     useEffect(() => {
         const socket = io("localhost:3000", {
             extraHeaders: {
-                Authorization: `Bearer ${user.jwt}`,
+                Authorization: `Bearer graph`,
             },
         })
 
@@ -121,11 +119,11 @@ const VoteGraphPage = () => {
         return () => {
             socket.disconnect()
         }
-    }, [user.jwt])
+    }, [])
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Votes</h1>
+            {/* <h1 className={styles.title}>Votes</h1> */}
             <Bar
                 data={voteData}
                 className={styles.chart}
@@ -142,7 +140,7 @@ const VoteGraphPage = () => {
                     },
                     scales: {
                         x: {
-                            display: true, // Show x-axis
+                            display: false, // Show x-axis
                             stacked: true,
                             ticks: {
                                 color: "white",
