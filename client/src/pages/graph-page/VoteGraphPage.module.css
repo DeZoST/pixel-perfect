@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     padding: 2rem;
 }
 
@@ -21,4 +21,27 @@
 .chart {
     max-width: 90%;
     max-height: 20%;
+}
+
+.percentagesContainer {
+    margin-top: 3rem;
+    display: flex;
+    gap: 5rem;
+    max-width: 90%;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fs-2xl);
+}
+
+.percentage {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.colorBox {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+    border-radius: 4px;
 }

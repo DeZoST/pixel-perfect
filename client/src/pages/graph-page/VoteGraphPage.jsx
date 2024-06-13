@@ -45,6 +45,15 @@ const VoteGraphPage = () => {
         ],
     })
 
+    const [percentages, setPercentages] = useState({
+        red: 0,
+        pink: 0,
+        lime: 0,
+        green: 0,
+        blue: 0,
+        yellow: 0,
+    })
+
     useEffect(() => {
         const socket = io("localhost:3000", {
             extraHeaders: {
@@ -54,6 +63,18 @@ const VoteGraphPage = () => {
 
         socket.on("vote.listen", data => {
             if (data) {
+                const totalVotes = Object.values(data).reduce((sum, val) => sum + val, 0)
+                const calculatePercentage = value => (totalVotes === 0 ? 0 : ((value / totalVotes) * 100).toFixed(2))
+
+                const updatedPercentages = {
+                    red: calculatePercentage(data.red),
+                    pink: calculatePercentage(data.pink),
+                    lime: calculatePercentage(data.lime),
+                    green: calculatePercentage(data.green),
+                    blue: calculatePercentage(data.blue),
+                    yellow: calculatePercentage(data.yellow),
+                }
+
                 const updatedData = {
                     labels: ["Current Team Votes"],
                     datasets: [
@@ -91,6 +112,7 @@ const VoteGraphPage = () => {
                 }
 
                 setVoteData(updatedData)
+                setPercentages(updatedPercentages)
             } else {
                 console.error("Unexpected data format received:", data)
             }
@@ -120,8 +142,16 @@ const VoteGraphPage = () => {
                     },
                     scales: {
                         x: {
-                            display: true, // Hide x-axis
+                            display: true, // Show x-axis
                             stacked: true,
+                            ticks: {
+                                color: "white",
+                                font: {
+                                    size: 16,
+                                    family: "Inter, sans-serif",
+                                    weight: "bold",
+                                },
+                            },
                         },
                         y: {
                             display: false, // Hide y-axis
@@ -134,6 +164,32 @@ const VoteGraphPage = () => {
                     },
                 }}
             />
+            <div className={styles.percentagesContainer}>
+                <div className={styles.percentage}>
+                    <span className={styles.colorBox} style={{backgroundColor: "#5C1513"}}></span>
+                    <span>Superpoop: {percentages.red}%</span>
+                </div>
+                <div className={styles.percentage}>
+                    <span className={styles.colorBox} style={{backgroundColor: "#8B4D60"}}></span>
+                    <span>Poop: {percentages.pink}%</span>
+                </div>
+                <div className={styles.percentage}>
+                    <span className={styles.colorBox} style={{backgroundColor: "#3C660D"}}></span>
+                    <span>Good: {percentages.lime}%</span>
+                </div>
+                <div className={styles.percentage}>
+                    <span className={styles.colorBox} style={{backgroundColor: "#303E10"}}></span>
+                    <span>Very good: {percentages.green}%</span>
+                </div>
+                <div className={styles.percentage}>
+                    <span className={styles.colorBox} style={{backgroundColor: "#2C2D7C"}}></span>
+                    <span>Epic: {percentages.blue}%</span>
+                </div>
+                <div className={styles.percentage}>
+                    <span className={styles.colorBox} style={{backgroundColor: "#DAAC1F"}}></span>
+                    <span>Legendary: {percentages.yellow}%</span>
+                </div>
+            </div>
         </div>
     )
 }
