@@ -1,11 +1,11 @@
 # 🎮 La Cité des Pixels - Pixel Perfect 🏆
 
-![Cité des Pixels](https://github.com/DeZoST/pixel-perfect/blob/main/client/public/images/logo-cite.png)
+![Cité des Pixels](./client/public/images/main-photo.png)
 
 ## 🌟 Configuration du Projet
 
 1. **Cloner le projet**
-2. **Générer les clés JWT** :
+2. **Générer les clés RSA** :
    Exécutez le script shell `./server/jwt.sh` pour générer les clés privées et publiques.
 3. **Configurer les variables d'environnement** :
    Créez les fichiers `.env` à partir des fichiers `.env.example` dans les dossiers `client` et `server`.
