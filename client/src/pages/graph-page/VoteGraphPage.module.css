@@ -24,13 +24,16 @@
 }
 
 .percentagesContainer {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
-    gap: 5rem;
-    max-width: 90%;
+    gap: 2rem;
+    max-width: 100%;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    font-size: var(--fs-2xl);
+    font-size: var(--fs-xl);
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
 }
 
 .percentage {

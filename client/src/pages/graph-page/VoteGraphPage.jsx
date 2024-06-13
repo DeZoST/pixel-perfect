@@ -147,7 +147,7 @@ const VoteGraphPage = () => {
                             ticks: {
                                 color: "white",
                                 font: {
-                                    size: 16,
+                                    size: 14,
                                     family: "Inter, sans-serif",
                                     weight: "bold",
                                 },
