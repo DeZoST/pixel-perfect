@@ -160,6 +160,10 @@ body {
     overflow-x: hidden;
 }
 
+option {
+    color: #000;
+}
+
 .container {
     width: 90%;
     margin-inline: auto;
