@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "react"
 import Title from "../../../../components/title/Title"
 import Wool from "../../../../components/wool/Wool"
+import Button from "../../../../components/button/Button"
 import styles from "./GamePlaying.module.css"
 import PropTypes from "prop-types"
 import axios from "axios"
@@ -10,6 +11,7 @@ const GamePlaying = ({game, votes}) => {
     const videoRef = useRef(null)
     const [selectedVote, setSelectedVote] = useState(null)
     const {user, role, team} = useAuth()
+    const [showLiveScore, setShowLiveScore] = useState(false)
 
     useEffect(() => {
         if (videoRef.current) {
@@ -59,9 +61,15 @@ const GamePlaying = ({game, votes}) => {
                         <Title level={1} title="Votez la qualité de la vidéo" className={styles.title} />
                     )}
 
-                    <div>
-                        <div></div>
+                    <div className={`${styles.timerContainer}`}>
                         <h2 className={`${styles.timerText}`}>{game.secondsRemaining} secondes restantes</h2>
+                        {role === "moderator" && (
+                            <Button
+                                className={`${styles.timerButton}`}
+                                onClick={() => setShowLiveScore(!showLiveScore)}
+                                text={showLiveScore ? "Cacher les scores" : "Afficher les scores"}
+                            />
+                        )}
                     </div>
                 </header>
                 <div className={`${styles.mainGameContainer}`}>
@@ -93,6 +101,7 @@ const GamePlaying = ({game, votes}) => {
                                     selected={selectedVote === wool.number}
                                     dimmed={selectedVote !== null && selectedVote !== wool.number}
                                     votes={role === "moderator" ? votes[wool.color] : null}
+                                    showLiveScore={showLiveScore}
                                 />
                             ))}
                     </div>
