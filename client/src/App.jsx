@@ -12,6 +12,7 @@ const UploadPage = lazy(() => import("./pages/upload-page/UploadPage"))
 const GamePage = lazy(() => import("./pages/game-page/GamePage"))
 const SwitchTeamPage = lazy(() => import("./pages/switch-team-page/SwitchTeamPage"))
 const PanelPage = lazy(() => import("./pages/panel-page/PanelPage"))
+const VoteGraphPage = lazy(() => import("./pages/graph-page/VoteGraphPage"))
 
 const queryClient = new QueryClient()
 
@@ -60,6 +61,17 @@ function AnimatedRoutes() {
                                 </motion.div>
                             </Suspense>
                         </ProtectedRoute>
+                    }
+                />
+                <Route
+                    exact
+                    path="/vote-graph"
+                    element={
+                        <Suspense fallback={<Loader />}>
+                            <motion.div initial="hidden" animate="visible" exit="exit" variants={pageTransition}>
+                                <VoteGraphPage />
+                            </motion.div>
+                        </Suspense>
                     }
                 />
                 <Route
